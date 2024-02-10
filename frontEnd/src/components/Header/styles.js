@@ -56,7 +56,7 @@ export const Container = styled.header `
             gap: 6px;
             padding: 64px 28px 32px;
             background-color: ${({ theme }) => theme.COLORS.BG_HEADER};
-            font-size: 21.163px;
+            font-size: 1.3rem;
             font-weight: 400;
             user-select: none;
         }
@@ -78,7 +78,6 @@ export const Container = styled.header `
                     font-weight: 300;
                     border-bottom: 1px solid ${({ theme }) => theme.COLORS.BG_TAG};
                 }
-
             }
 
         }

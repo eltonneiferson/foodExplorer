@@ -9,9 +9,14 @@ export const Container = styled.h1 `
     line-height: normal;
     color: ${({ theme }) => theme.COLORS.TITLE};
     user-select: none;
-    /* margin-bottom: 41px; */
 
     img {
         width: clamp(2.6rem, 3vw, 3.0rem);
+    }
+
+    span {
+        font-size: 12px;
+        color: ${({ theme }) => theme.COLORS.PRICE};
+        font-weight: normal;
     }
 `

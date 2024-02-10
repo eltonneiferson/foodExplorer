@@ -13,7 +13,8 @@ export const Container = styled.div `
     place-items: center;
     gap: 0.75rem;
 
-    .heart {
+    .icon {
+        cursor: pointer;
         position: absolute;
         right: 1rem;
         top: 1rem;
