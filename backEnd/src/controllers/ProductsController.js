@@ -1,17 +1,19 @@
 const knex = require('../database/knex')
-
+const DiskStorage = require("../providers/DiskStorage")
 const AppError = require('../utils/AppError')
 
 class ProductsController {
     async create(req, res) {
-        const { name, description, price, ingredients, category_id } = req.body
+        const { name, description, price, category_id } = req.body
+        const imageProduct = req.file.filename
+        const ingredients = JSON.parse(req.body.ingredients)
         const { id: user_id } = req.user
         
-        if( !name || !description || !price || !ingredients, !category_id ) {
+        if( !name || !description || !price || !ingredients || !category_id ) {
             throw new AppError("Todos os campos são obrigatórios!")
         }
 
-        const [product_id] = await knex("products").insert({name, description, price, user_id, category_id})
+        const [product_id] = await knex("products").insert({name, description, price, image: imageProduct,user_id, category_id})
                 
         const ingredientsInsert = ingredients.map(ingredient => {
             return {
@@ -24,14 +26,6 @@ class ProductsController {
         await knex("ingredients").insert(ingredientsInsert)
         
         return res.status(201).send("Produto cadastrado!")
-    }
-
-    async read(req, res) {
-        const { search } = req.query
-
-        const products = await knex("products").whereLike("name", `%${search}%`)
-
-        return res.json(products)
     }
 
     async update(req, res) {
@@ -50,8 +44,8 @@ class ProductsController {
 
         await knex("products").update({name, description, price, updated_at: knex.fn.now()}).where("id", id)
 
-        const [ productUpdated ] = await knex("products").select().where("id", id)
-        const productIngredients = await knex("ingredients").select().where({ product_id: id }).orderBy("name")
+        const [ productUpdated ] = await knex("products").where("id", id)
+        const productIngredients = await knex("ingredients").where({ product_id: id }).orderBy("name")
 
         return res.json({ ...productUpdated, productIngredients })
     }

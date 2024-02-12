@@ -33,10 +33,8 @@ export const Container = styled.div `
             border-radius: 0 8px 8px 0;
         }
         
+        &:focus-within {
+            border: ${({ theme }) => theme.COLORS.TEXT} 1px solid;
+        }
     }
-    
-    div:focus-within {
-        border: ${({ theme }) => theme.COLORS.TEXT} 1px solid;
-    }
-    
 `

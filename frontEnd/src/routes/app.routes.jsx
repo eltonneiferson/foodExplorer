@@ -12,7 +12,7 @@ export function AppRoutes(){
     return (
         <Routes>
             <Route path='/' element={<Home/>}/>
-            <Route path='/product/:id' element={<Product/>}/>
+            <Route path='/product/:productId' element={<Product/>}/>
             {user.is_admin === 1 && <Route path='/newproduct' element={<NewProduct/>}/>}
         </Routes>
     )

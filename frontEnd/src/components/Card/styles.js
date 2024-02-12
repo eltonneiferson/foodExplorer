@@ -30,6 +30,7 @@ export const Container = styled.div `
         font-family: 'Poppins', sans-serif;
         font-size: clamp(14px, 2vw, 24px);
         font-weight: 500;
+        text-align: center;
     }
 
     p {

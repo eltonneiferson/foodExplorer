@@ -41,7 +41,7 @@ export function Products () {
                             {categoryProducts.map((product) => {
                                 return (
                                     <SwiperSlide key={product.id}>
-                                        <Card product={product.name + " >"} img={product.image} price={"R$ " + product.price} quantity="01" link={product.id}/>
+                                        <Card product={product.name + " >"} img={`http://localhost:3333/files/${product.image}`} price={"R$ " + product.price} quantity="01" link={product.id}/>
                                     </SwiperSlide>
                                 )
                             }

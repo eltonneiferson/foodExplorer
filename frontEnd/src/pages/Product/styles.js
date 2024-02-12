@@ -42,6 +42,7 @@ export const Content = styled.main `
                 flex-direction: column;
                 gap: 1.5rem;
                 align-items: center;
+                text-align: center;
                 
                 > h2 {
                     font-family: 'Poppins', sans-serif;
@@ -56,10 +57,9 @@ export const Content = styled.main `
                 }
                 
                 > div.tags {
-                    display: grid;
-                    grid-template-columns: max-content max-content max-content;
-                    place-content: center;
-                    place-items: center;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
                     gap: 1.5rem;
     
                     > span {
@@ -111,9 +111,7 @@ export const Content = styled.main `
                     }
 
                     div.tags {
-                        display: flex;
                         justify-content: start;
-                        flex-wrap: wrap;
                         gap: 0.75rem;
                     }
                 }

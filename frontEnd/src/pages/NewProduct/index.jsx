@@ -44,28 +44,39 @@ export function NewProduct() {
   }
   
   function submitNewProduct() {
-    /* const file = inputFile.current.files[0]
-    const formData = new FormData() // Cria um objeto FormData para enviar o arquivo
-    formData.append('image', inputFile.current.files[0]) */
-
-    /* if (!productName || !productCategory || !productIngredients || !productPrice, !productDescription){
-      return alert("Para cadastrar um produto é necessário informar todos os campos!")
-    } */
-
+    const file = inputFile.current.files[0]
+    const product = new FormData() // Cria um objeto FormData para enviar os dados do produto.
+    
+    product.append('name', productName)
+    product.append('description', productDescription)
+    product.append('price', productPrice)
+    product.append('image', file)
+    product.append('category_id', productCategory)
+    product.append('ingredients', JSON.stringify(productIngredients))
+    
     if (newIngredient !== "") {
       alert(`Você não adicionou o ingrediente "${newIngredient.toUpperCase()}"!`)
-      return //}"`)
+      return
     }
     
-    api.post("/products", {
-        name: productName,
-        description: productDescription,
-        price: productPrice,
-        image: '',
-        ingredients: productIngredients,
-        category_id: productCategory
-      }).then(() => {
+    /* if(!productName || !productCategory || !productIngredients || !productPrice || !productDescription) {
+      return alert("Para cadastrar o produto preencha todos os campos!")
+    } */
+    
+    api.post('/products', product).catch((err) => {
+      if(err){
+        alert(err.response.data.message)
+      } else {
+        alert("Produto cadastrado com sucesso!")
+      }
+    }).then(() => {
       alert("Produto cadastrado com sucesso!")
+      setProductName("")
+      setProductCategory("")
+      setProductIngredients([])
+      setProductPrice("")
+      setProductDescription("")
+      setProductImageUpload('Selecione uma imagem')
     }).catch((err) => {
       if(err){
         alert(err.response.data.message)
@@ -102,10 +113,10 @@ export function NewProduct() {
             <input id="image-upload" type="file" ref={inputFile} onChange={() => setProductImageUpload(inputFile.current.files[0].name)}/>
           </div>
         </div>
-        <Input label="Nome" type="text" placeholder="Ex.:Salada Ceasar" onChange={e => setProductName(e.target.value)}/>
+        <Input label="Nome" type="text" placeholder="Ex.:Salada Ceasar" value={productName} onChange={e => setProductName(e.target.value)}/>
         <div className="select">
           <label htmlFor="categories">Categoria</label>
-          <select id="categories" onChange={e => setProductCategory(e.target.value)}>
+          <select id="categories" value={productCategory} onChange={e => setProductCategory(e.target.value)}>
             <option>Selecione uma categoria</option>
             {categories.map((category) => <option key={category.id} value={category.id}>{category.category}</option>)}
           </select>
@@ -114,17 +125,17 @@ export function NewProduct() {
         <Ingredients>
           <p>Ingredientes</p>
           <div>
-            {productIngredients.map((ingredient, index) => <button key={index} className='remove'>{ingredient}<abbr title="Remover"><X onClick={() => removeIngredient(ingredient)}/>
+            {productIngredients.map((ingredient, index) => <button key={index} className='remove' onClick={e => e.preventDefault()}>{ingredient}<abbr title="Remover"><X onClick={() => removeIngredient(ingredient)}/>
             </abbr></button>)}
             <span className='add'><input className="add" type="text" placeholder="Adicionar" value={newIngredient} onChange={e => setNewIngredient(e.target.value)}/><abbr title="Adicionar">
               <Plus onClick={addIngredients}/>
             </abbr></span>
           </div>
         </Ingredients>
-        <Input label="Preço" type="text" placeholder="R$ 00,00" onChange={e => setProductPrice(e.target.value)}/>
+        <Input label="Preço" type="text" placeholder="R$ 00,00" value={productPrice} onChange={e => setProductPrice(e.target.value)}/>
         <div className="textarea">
           <label htmlFor="description">Descrição</label>
-          <textarea id="description" cols="30" rows="10" placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" onChange={e => setProductDescription(e.target.value)}/>
+          <textarea id="description" cols="30" rows="10" placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" value={productDescription} onChange={e => setProductDescription(e.target.value)}/>
         </div>
         <Button onClick={submitNewProduct}>Salvar alterações</Button>
       </Content>
