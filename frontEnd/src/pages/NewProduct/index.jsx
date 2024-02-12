@@ -58,10 +58,28 @@ export function NewProduct() {
       alert(`Você não adicionou o ingrediente "${newIngredient.toUpperCase()}"!`)
       return
     }
+
+    switch (true) {
+      case !file:
+        return alert('O campo "Imagem do Produto" é obrigatório!')
+
+      case !productName:
+        return alert('O campo "Nome" é obrigatório!');
     
-    /* if(!productName || !productCategory || !productIngredients || !productPrice || !productDescription) {
-      return alert("Para cadastrar o produto preencha todos os campos!")
-    } */
+      case !productCategory:
+        return alert('O campo "Categoria" é obrigatório!');
+    
+      case !productIngredients || productIngredients.length === 0:
+        return alert("Pelo menos um Ingrediente é obrigatório!")
+    
+      case !productPrice:
+        return alert('O campo "Preço" é obrigatório!')
+    
+      case !productDescription:
+        return alert('O campo "Descrição" é obrigatório!')
+
+      default:
+    }
     
     api.post('/products', product).catch((err) => {
       if(err){
@@ -76,7 +94,7 @@ export function NewProduct() {
       setProductIngredients([])
       setProductPrice("")
       setProductDescription("")
-      setProductImageUpload('Selecione uma imagem')
+      setProductImageUpload("Selecione uma imagem")
     }).catch((err) => {
       if(err){
         alert(err.response.data.message)
@@ -113,7 +131,7 @@ export function NewProduct() {
             <input id="image-upload" type="file" ref={inputFile} onChange={() => setProductImageUpload(inputFile.current.files[0].name)}/>
           </div>
         </div>
-        <Input label="Nome" type="text" placeholder="Ex.:Salada Ceasar" value={productName} onChange={e => setProductName(e.target.value)}/>
+        <Input idInput="product-name" htmlFor="product-name" label="Nome" type="text" placeholder="Ex.:Salada Ceasar" value={productName} onChange={e => setProductName(e.target.value)}/>
         <div className="select">
           <label htmlFor="categories">Categoria</label>
           <select id="categories" value={productCategory} onChange={e => setProductCategory(e.target.value)}>
@@ -132,7 +150,7 @@ export function NewProduct() {
             </abbr></span>
           </div>
         </Ingredients>
-        <Input label="Preço" type="text" placeholder="R$ 00,00" value={productPrice} onChange={e => setProductPrice(e.target.value)}/>
+        <Input idInput="price" htmlFor="price" label="Preço" type="text" placeholder="R$ 00,00" value={productPrice} onChange={e => setProductPrice(e.target.value)}/>
         <div className="textarea">
           <label htmlFor="description">Descrição</label>
           <textarea id="description" cols="30" rows="10" placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" value={productDescription} onChange={e => setProductDescription(e.target.value)}/>

@@ -37,9 +37,9 @@ export function SignUp() {
       <Logo/>
       <Form>
         <h2>Crie sua conta</h2>
-        <Input id="name" htmlFor="name" type="text" label="Seu nome" placeholder='Exemplo: Maria da Silva' onChange={e => setName(e.target.value)}/>
-        <Input id="email" htmlFor="email" type="email" label="Email" placeholder='Exemplo: exemplo@exemplo.com.br' onChange={e => setEmail(e.target.value)}/>
-        <Input id="password" htmlFor="password" type="password" label="Senha" placeholder='No mínimo 6 caracteres' onChange={e => setPassword(e.target.value)}/>
+        <Input idInput="name" htmlFor="name" type="text" label="Seu nome" placeholder='Exemplo: Maria da Silva' onChange={e => setName(e.target.value)}/>
+        <Input idInput="email" htmlFor="email" type="email" label="Email" placeholder='Exemplo: exemplo@exemplo.com.br' onChange={e => setEmail(e.target.value)}/>
+        <Input idInput="password" htmlFor="password" type="password" label="Senha" placeholder='No mínimo 6 caracteres' onChange={e => setPassword(e.target.value)}/>
         <Button onClick={submitSignUp}>Criar conta</Button>
         <Link to='/'>Já tenho uma conta</Link>
       </Form>

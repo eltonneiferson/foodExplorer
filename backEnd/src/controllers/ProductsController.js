@@ -12,9 +12,12 @@ class ProductsController {
         if( !name || !description || !price || !ingredients || !category_id ) {
             throw new AppError("Todos os campos são obrigatórios!")
         }
+        
+        const diskStorage = new DiskStorage()
+        const image = await diskStorage.saveFile(imageProduct)
+        
+        const [product_id] = await knex("products").insert({name, description, price, image, category_id})
 
-        const [product_id] = await knex("products").insert({name, description, price, image: imageProduct,user_id, category_id})
-                
         const ingredientsInsert = ingredients.map(ingredient => {
             return {
                 product_id,

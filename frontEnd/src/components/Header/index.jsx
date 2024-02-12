@@ -36,7 +36,7 @@ export function Header() {
                 </div>}
                 {!menuMobileOpen && <div className='requests'>
                     {user.is_admin === 1 ? <Button><Link to="/newproduct">Novo prato</Link></Button> : <Button><Receipt />Pedidos (0)</Button>}
-                    <LogOut width={32} height={32} cursor='pointer' onClick={SignOut}/>
+                    <Link to="/" onClick={SignOut}><LogOut width={32} height={32} cursor='pointer'/></Link>
                 </div>}
                 {menuMobileOpen && <Footer />}
             </div>
