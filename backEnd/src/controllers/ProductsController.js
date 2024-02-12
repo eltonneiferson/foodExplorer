@@ -23,7 +23,7 @@ class ProductsController {
         
         await knex("ingredients").insert(ingredientsInsert)
         
-        return res.status(201).json({ name, description, price, ingredients, category_id })
+        return res.status(201).send("Produto cadastrado!")
     }
 
     async read(req, res) {

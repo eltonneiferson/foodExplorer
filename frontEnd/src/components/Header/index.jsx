@@ -22,7 +22,7 @@ export function Header() {
         <Container>
             <div className={!menuMobileOpen ? 'menu-close': 'menu-open'}>
                 {!menuMobileOpen ? <Menu onClick={openMenu} cursor='pointer' className='menu-icon'/> : <p><X onClick={closeMenu} cursor='pointer'/>Menu</p>}
-                {!menuMobileOpen && <Logo />}
+                {!menuMobileOpen && user.is_admin === 1 ? <Logo isAdmin={true}/> : !menuMobileOpen && <Logo/>}
                 <div className='input'>
                     <Input id="search" type="text" placeholder='Busque por pratos ou ingredientes' icon={Search}/>
                     <div className="options">
@@ -35,8 +35,8 @@ export function Header() {
                     <Receipt />
                 </div>}
                 {!menuMobileOpen && <div className='requests'>
-                    <Button><Receipt />Pedidos (0)</Button>
-                    <LogOut width={32} height={32} cursor='pointer'/>
+                    {user.is_admin === 1 ? <Button><Link to="/newproduct">Novo prato</Link></Button> : <Button><Receipt />Pedidos (0)</Button>}
+                    <LogOut width={32} height={32} cursor='pointer' onClick={SignOut}/>
                 </div>}
                 {menuMobileOpen && <Footer />}
             </div>
