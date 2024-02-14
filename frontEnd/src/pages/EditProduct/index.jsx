@@ -3,13 +3,13 @@ import { Header } from '../../components/Header/index.jsx'
 import { Footer } from '../../components/Footer/index.jsx'
 import { ChevronLeft } from 'lucide-react'
 import { Button } from '../../components/Button/index.jsx'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Input } from '../../components/Input/index'
 import { Upload, X, Plus, ChevronDown } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 import { api } from "../../services/api.js"
 
-export function NewProduct() { 
+export function EditProduct() { 
   const [categories, setCategories] = useState([])
   const [ productImageUpload, setProductImageUpload] = useState('Selecione uma imagem')
   const [ productName, setProductName] = useState('')
@@ -20,6 +20,7 @@ export function NewProduct() {
   const [ newIngredient, setNewIngredient] = useState('')
   
   const inputFile = useRef(null)
+  const { productId } = useParams()
 
   function addIngredients () {
     if (!newIngredient) {
@@ -81,7 +82,7 @@ export function NewProduct() {
       default:
     }
     
-    api.post('/products', product).catch((err) => {
+    /* api.post('/products', product).catch((err) => {
       if(err){
         alert(err.response.data.message)
       } else {
@@ -101,21 +102,39 @@ export function NewProduct() {
       } else {
         alert("Não foi possível realizar o cadastro, tente novamente mais tarde!")
       }
-    })
+    }) */
   }
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchDataProduct() {
         try {
-            const response = await api.get("/products/index")
-            const { categories } = response.data
-            setCategories(categories)
+            const response = await api.get(`/products/${productId}`)
+            const { product, category, ingredients } = response.data
+
+            setProductImageUpload(product.image)
+            setProductName(product.name)
+            setProductCategory(category)
+            setProductDescription(product.description)
+            setProductPrice(product.price)
+            ingredients.map((ingredient) => setProductIngredients(prevState => [...prevState, ingredient.name]))
         } catch (err) {
             console.log(err)
         }
     }
-    fetchData()
-}, [])
+    
+    async function fetchDataCategories() {
+      try {
+          const response = await api.get("/products/index")
+          const { categories } = response.data
+          setCategories(categories)
+      } catch (err) {
+          console.log(err)
+      }
+    }
+
+    fetchDataCategories()
+    fetchDataProduct()
+}, [productId])
 
   return (
     <Container>
@@ -134,8 +153,8 @@ export function NewProduct() {
         <Input idInput="product-name" htmlFor="product-name" label="Nome" type="text" placeholder="Ex.:Salada Ceasar" value={productName} onChange={e => setProductName(e.target.value)}/>
         <div className="select">
           <label htmlFor="categories">Categoria</label>
-          <select id="categories" value={productCategory} onChange={e => setProductCategory(e.target.value)}>
-            <option>Selecione uma categoria</option>
+          <select id="categories" onChange={e => setProductCategory(e.target.value)}>
+            <option value={productCategory.id}>{productCategory.category}</option>
             {categories.map((category) => <option key={category.id} value={category.id}>{category.category}</option>)}
           </select>
           <ChevronDown/>

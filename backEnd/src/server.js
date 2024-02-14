@@ -5,13 +5,12 @@ const express = require('express')
 const cors = require('cors')
 const routes = require('./routes')
 const uploadConfigs = require('./configs/upload')
-const checkAuth = require("./middlewares/checkAuth")
 
 const app = express()
 
 app.use(express.json())
 app.use(cors())
-app.use("/files", checkAuth, express.static(uploadConfigs.UPLOADS_FOLDER))
+app.use("/files", express.static(uploadConfigs.UPLOADS_FOLDER))
 
 app.use(routes)
 

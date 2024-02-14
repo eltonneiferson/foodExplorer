@@ -7,7 +7,7 @@ import 'swiper/css/navigation'
 
 import { Card } from '../Card/index.jsx'
 
-import { api } from "../../services/api.js"
+import { api } from "../../services/api"
 import { useEffect, useState } from 'react'
 
 export function Products () {
@@ -41,7 +41,7 @@ export function Products () {
                             {categoryProducts.map((product) => {
                                 return (
                                     <SwiperSlide key={product.id}>
-                                        <Card product={product.name + " >"} img={`http://localhost:3333/files/${product.image}`} price={"R$ " + product.price} quantity="01" link={product.id}/>
+                                        <Card product={product.name + " >"} img={`${api.defaults.baseURL}/files/${product.image}`} price={"R$ " + product.price} quantity="01" productId={product.id}/>
                                     </SwiperSlide>
                                 )
                             }

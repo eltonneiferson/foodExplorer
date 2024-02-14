@@ -26,7 +26,7 @@ export function Header() {
                 <div className='input'>
                     <Input id="search" type="text" placeholder='Busque por pratos ou ingredientes' icon={Search}/>
                     <div className="options">
-                        {menuMobileOpen && user.is_admin === 1 && <Link to="/newproduct">Novo Produto</Link>}
+                        {menuMobileOpen && user.is_admin === 1 && <Link to="/new-product">Novo Produto</Link>}
                         {menuMobileOpen && <Link to="/" onClick={SignOut}>Sair</Link>}
                     </div>
                 </div>
@@ -35,7 +35,7 @@ export function Header() {
                     <Receipt />
                 </div>}
                 {!menuMobileOpen && <div className='requests'>
-                    {user.is_admin === 1 ? <Button><Link to="/newproduct">Novo prato</Link></Button> : <Button><Receipt />Pedidos (0)</Button>}
+                    {user.is_admin === 1 ? <Button><Link to="/new-product">Novo prato</Link></Button> : <Button><Receipt />Pedidos (0)</Button>}
                     <Link to="/" onClick={SignOut}><LogOut width={32} height={32} cursor='pointer'/></Link>
                 </div>}
                 {menuMobileOpen && <Footer />}

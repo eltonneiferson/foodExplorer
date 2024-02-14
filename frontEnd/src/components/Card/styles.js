@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div `
     width: clamp(210px, 35vw, 304px);
+    min-height: 292px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
     background: ${({ theme }) => theme.COLORS.BG_CARD_ITEM};
@@ -9,8 +10,10 @@ export const Container = styled.div `
     border-radius: 8px;
     position: relative;
 
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 0.75rem;
 
     .icon {
@@ -44,7 +47,7 @@ export const Container = styled.div `
         flex-direction: column;
         align-items: center;
         gap: 16px;
-
+        
         > div {
             display: flex;
             align-items: center;

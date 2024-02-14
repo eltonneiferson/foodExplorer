@@ -5,7 +5,8 @@ import { Minus, Plus, Receipt, ChevronLeft } from 'lucide-react'
 import { Button } from '../../components/Button/index.jsx'
 import { Link, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { api } from './../../services/api';
+import { api } from './../../services/api'
+import { useAuth } from '../../hooks/authContext'
 
 export function Product() {
   const [productDetails, setProductDetails] = useState([])
@@ -13,6 +14,7 @@ export function Product() {
   const [orderQuantity, setProductQuantity] = useState(1)
 
   const { productId } = useParams()
+  const { user } = useAuth()
 
   function removeQuantity(){
     if (orderQuantity == 1) {
@@ -42,19 +44,20 @@ export function Product() {
       <Content>
         <Link to="/"><ChevronLeft/>voltar</Link>
         <div className='description'>
-          <img src={`http://localhost:3333/files/${productDetails.image}`} alt="" />
+          <img src={`${api.defaults.baseURL}/files/${productDetails.image}`} alt="" />
           <div className="about">
             <h2>{productDetails.name}</h2>
             <p>{productDetails.description}</p>
             <div className='tags'>
               {productIngredients.map(ingredient => <span key={ingredient.id}>{ingredient.name}</span>)}
             </div>
+            {user.is_admin === 1 ? <Button><Link to={`/edit-product/${productDetails.id}`}>Editar prato</Link></Button> : 
             <div className='buttons'>
               <p>
                 <Minus cursor="pointer" onClick={removeQuantity}/>{String(orderQuantity).padStart(2, "0")}<Plus cursor="pointer" onClick={() => setProductQuantity(prevState => prevState + 1)}/>
               </p>
               <Button><Receipt/>pedir&nbsp;&bull; R$ 25,00</Button>
-            </div>
+            </div>}
           </div>
         </div>
       </Content>

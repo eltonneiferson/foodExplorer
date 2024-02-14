@@ -23,6 +23,7 @@ productsRoutes.post("/", upload.single("image"), products.create)
 productsRoutes.get("/index", products.index)
 productsRoutes.put("/:id", products.update)
 productsRoutes.delete("/:id", products.delete)
+
 productsRoutes.patch("/image/:id", upload.single("image"), productImage.update)
 
 productsRoutes.get("/:id", searchProducts.searchProduct)

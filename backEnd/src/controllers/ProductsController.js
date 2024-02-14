@@ -16,7 +16,7 @@ class ProductsController {
         const diskStorage = new DiskStorage()
         const image = await diskStorage.saveFile(imageProduct)
         
-        const [product_id] = await knex("products").insert({name, description, price, image, category_id})
+        const [product_id] = await knex("products").insert({name, description, price, image, category_id, user_id})
 
         const ingredientsInsert = ingredients.map(ingredient => {
             return {
@@ -28,7 +28,7 @@ class ProductsController {
         
         await knex("ingredients").insert(ingredientsInsert)
         
-        return res.status(201).send("Produto cadastrado!")
+        return res.status(201).send()
     }
 
     async update(req, res) {
