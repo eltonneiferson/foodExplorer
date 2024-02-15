@@ -85,7 +85,7 @@ export function NewProduct() {
       if(err){
         alert(err.response.data.message)
       } else {
-        alert("Produto cadastrado com sucesso!")
+        alert("Error no servidor!")
       }
     }).then(() => {
       alert("Produto cadastrado com sucesso!")
@@ -134,7 +134,7 @@ export function NewProduct() {
         <Input idInput="product-name" htmlFor="product-name" label="Nome" type="text" placeholder="Ex.:Salada Ceasar" value={productName} onChange={e => setProductName(e.target.value)}/>
         <div className="select">
           <label htmlFor="categories">Categoria</label>
-          <select id="categories" value={productCategory} onChange={e => setProductCategory(e.target.value)}>
+          <select id="categories" onChange={e => setProductCategory(e.target.value)}>
             <option>Selecione uma categoria</option>
             {categories.map((category) => <option key={category.id} value={category.id}>{category.category}</option>)}
           </select>

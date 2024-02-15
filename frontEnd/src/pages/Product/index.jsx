@@ -29,7 +29,7 @@ export function Product() {
           const response = await api.get(`/products/${productId}`)
           const { product, ingredients } = response.data
               
-          setProductDetails(product[0])
+          setProductDetails(product)
           setProductIngredients(ingredients)
         } catch (err) {
           console.log(err)
@@ -44,7 +44,7 @@ export function Product() {
       <Content>
         <Link to="/"><ChevronLeft/>voltar</Link>
         <div className='description'>
-          <img src={`${api.defaults.baseURL}/files/${productDetails.image}`} alt="" />
+          {<img src={`${api.defaults.baseURL}/files/${productDetails.image}`} alt="" />}
           <div className="about">
             <h2>{productDetails.name}</h2>
             <p>{productDetails.description}</p>

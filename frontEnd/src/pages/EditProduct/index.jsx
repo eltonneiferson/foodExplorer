@@ -11,12 +11,12 @@ import { api } from "../../services/api.js"
 
 export function EditProduct() { 
   const [categories, setCategories] = useState([])
-  const [ productImageUpload, setProductImageUpload] = useState('Selecione uma imagem')
+  const [ productImageUpload, setProductImageUpload] = useState('')
   const [ productName, setProductName] = useState('')
   const [ productDescription, setProductDescription] = useState('')
   const [ productPrice, setProductPrice] = useState('')
   const [ productIngredients, setProductIngredients] = useState([])
-  const [ productCategory, setProductCategory] = useState('')
+  const [ productCategory, setProductCategory] = useState({})
   const [ newIngredient, setNewIngredient] = useState('')
   
   const inputFile = useRef(null)
@@ -40,9 +40,7 @@ export function EditProduct() {
     setNewIngredient('')
   }
 
-  function removeIngredient (deleted) {
-    setProductIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted))
-  }
+  const removeIngredient = (deleted) => setProductIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted))
   
   function submitNewProduct() {
     const file = inputFile.current.files[0]
@@ -61,48 +59,39 @@ export function EditProduct() {
     }
 
     switch (true) {
-      case !file:
-        return alert('O campo "Imagem do Produto" é obrigatório!')
-
       case !productName:
-        return alert('O campo "Nome" é obrigatório!');
+        return alert('O campo "Nome" não pode ficar em branco!');
     
       case !productCategory:
-        return alert('O campo "Categoria" é obrigatório!');
+        return alert('O campo "Categoria" não pode ficar em branco!');
     
       case !productIngredients || productIngredients.length === 0:
         return alert("Pelo menos um Ingrediente é obrigatório!")
     
       case !productPrice:
-        return alert('O campo "Preço" é obrigatório!')
+        return alert('O campo "Preço" não pode ficar em branco!')
     
       case !productDescription:
-        return alert('O campo "Descrição" é obrigatório!')
+        return alert('O campo "Descrição" não pode ficar em branco!')
 
       default:
     }
     
-    /* api.post('/products', product).catch((err) => {
+    api.put(`/products/${productId}`, product).catch((err) => {
       if(err){
         alert(err.response.data.message)
       } else {
-        alert("Produto cadastrado com sucesso!")
+        alert("Error")
       }
     }).then(() => {
-      alert("Produto cadastrado com sucesso!")
-      setProductName("")
-      setProductCategory("")
-      setProductIngredients([])
-      setProductPrice("")
-      setProductDescription("")
-      setProductImageUpload("Selecione uma imagem")
+      alert("Os dados do produto foram atualizados!")
     }).catch((err) => {
       if(err){
         alert(err.response.data.message)
       } else {
-        alert("Não foi possível realizar o cadastro, tente novamente mais tarde!")
+        alert("Falha ao atualizar os dados do produto, tente novamente mais tarde!")
       }
-    }) */
+    })
   }
 
   useEffect(() => {
@@ -111,12 +100,15 @@ export function EditProduct() {
             const response = await api.get(`/products/${productId}`)
             const { product, category, ingredients } = response.data
 
+            const allIngredients = []
+            ingredients.map((ingredient) => allIngredients.push(ingredient.name))
+
             setProductImageUpload(product.image)
             setProductName(product.name)
             setProductCategory(category)
             setProductDescription(product.description)
             setProductPrice(product.price)
-            ingredients.map((ingredient) => setProductIngredients(prevState => [...prevState, ingredient.name]))
+            setProductIngredients(allIngredients)
         } catch (err) {
             console.log(err)
         }
@@ -136,6 +128,8 @@ export function EditProduct() {
     fetchDataProduct()
 }, [productId])
 
+console.log(productCategory.id)
+
   return (
     <Container>
       <Header />
@@ -153,7 +147,7 @@ export function EditProduct() {
         <Input idInput="product-name" htmlFor="product-name" label="Nome" type="text" placeholder="Ex.:Salada Ceasar" value={productName} onChange={e => setProductName(e.target.value)}/>
         <div className="select">
           <label htmlFor="categories">Categoria</label>
-          <select id="categories" onChange={e => setProductCategory(e.target.value)}>
+          <select id="categories" value={productCategory.id} onChange={e => setProductCategory(e.target.value)}>
             <option value={productCategory.id}>{productCategory.category}</option>
             {categories.map((category) => <option key={category.id} value={category.id}>{category.category}</option>)}
           </select>

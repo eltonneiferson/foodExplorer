@@ -32,25 +32,38 @@ class ProductsController {
     }
 
     async update(req, res) {
-        const { name, description, price, ingredients } = req.body
+        const { name, description, price, category_id } = req.body
+        const ingredients = JSON.parse(req.body.ingredients)
+        const selectedProductImage = req.file
         const { id } = req.params
+
+        console.log(category_id)
 
         if (!name || !description || !price) {
             throw new AppError("Todos os campos são obrigatórios!")
         }
 
         const [ product ] = await knex("products").select().where("id", id)
+        const diskStorage = new DiskStorage()
 
         if (!product) {
             throw new AppError("Produto não encontrado!")
         }
 
-        await knex("products").update({name, description, price, updated_at: knex.fn.now()}).where("id", id)
+        if(selectedProductImage) {
+            const imageProduct = req.file.filename
 
-        const [ productUpdated ] = await knex("products").where("id", id)
-        const productIngredients = await knex("ingredients").where({ product_id: id }).orderBy("name")
+            if (product.image) {
+                await diskStorage.deleteFile(product.image)
+            }
 
-        return res.json({ ...productUpdated, productIngredients })
+            const image = await diskStorage.saveFile(imageProduct)
+            await knex("products").update({ image }).where("id", id)
+        }
+
+        await knex("products").update({name, description, price, category_id, updated_at: knex.fn.now()}).where("id", id)
+
+        return res.json()
     }
 
     async delete(req, res) {
