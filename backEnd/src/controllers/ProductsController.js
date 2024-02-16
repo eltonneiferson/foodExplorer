@@ -33,18 +33,17 @@ class ProductsController {
 
     async update(req, res) {
         const { name, description, price, category_id } = req.body
-        const ingredients = JSON.parse(req.body.ingredients)
         const selectedProductImage = req.file
         const { id } = req.params
-
-        console.log(category_id)
 
         if (!name || !description || !price) {
             throw new AppError("Todos os campos são obrigatórios!")
         }
 
-        const [ product ] = await knex("products").select().where("id", id)
+        const [ product ] = await knex("products").where("id", id)
         const diskStorage = new DiskStorage()
+
+        console.log(product.id)
 
         if (!product) {
             throw new AppError("Produto não encontrado!")

@@ -6,7 +6,7 @@ import { Button } from '../../components/Button/index.jsx'
 import { Link, useParams } from 'react-router-dom'
 import { Input } from '../../components/Input/index'
 import { Upload, X, Plus, ChevronDown } from 'lucide-react'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { api } from "../../services/api.js"
 
 export function EditProduct() { 
@@ -16,33 +16,82 @@ export function EditProduct() {
   const [ productDescription, setProductDescription] = useState('')
   const [ productPrice, setProductPrice] = useState('')
   const [ productIngredients, setProductIngredients] = useState([])
-  const [ productCategory, setProductCategory] = useState({})
+  const [ productCategory, setProductCategory] = useState('')
+  const [ productNewCategory, setProductNewCategory] = useState('')
   const [ newIngredient, setNewIngredient] = useState('')
   
   const inputFile = useRef(null)
   const { productId } = useParams()
+  
+  const fetchProduct = useCallback(async () => {
+    try {
+        const response = await api.get(`/products/${productId}`)
+        const { product, category, ingredients } = response.data
 
-  function addIngredients () {
+        const allIngredients = []
+        ingredients.map((ingredient) => allIngredients.push(ingredient.name))
+
+        setProductImageUpload(product.image)
+        setProductName(product.name)
+        setProductCategory(category)
+        setProductNewCategory(category.id)
+        setProductDescription(product.description)
+        setProductPrice(product.price)
+        setProductIngredients(ingredients)
+    } catch (err) {
+        console.log(err)
+    }
+  }, [productId])
+
+  const fetchCategories = useCallback(async () => {
+    try {
+        const response = await api.get("/products/index")
+        const { categories } = response.data
+        const filterCategories = categories.filter(category => category.id !== productCategory.id)
+        setCategories(filterCategories)
+    } catch (err) {
+        console.log(err)
+    }
+  }, [productCategory.id])
+
+  const fetchIngredients = useCallback(async () => {
+    try {
+        const response = await api.get(`/ingredients/${productId}`)
+        const { ingredients } = response.data
+        setProductIngredients(ingredients)
+    } catch (err) {
+        console.log(err)
+    }
+  }, [productId])
+
+  const addIngredients = () => {
     if (!newIngredient) {
       alert("Informe um ingrediente!")
       return
     }
 
-    const ingredient = productIngredients.filter(ingredient => ingredient === newIngredient)
-
-    if (ingredient.length > 0) {
-      alert(`O ingrediente "${newIngredient.toUpperCase()}" já foi cadastrado!`)
-      return
-    }
-
-    setProductIngredients(prevState => [...prevState, newIngredient])
-
-    setNewIngredient('')
+    api.post("/ingredients", { 
+      name: newIngredient,
+      product_id: productId
+    }).catch( err => {
+      err ? alert(err.response.data.message) : alert("Error")
+    }).then( () => {
+      setNewIngredient('')
+      fetchIngredients()
+    }).catch(err => {
+      err ? alert(err.response.data.message) : alert("Error ao adicionar o ingrediente, tente novamente mais tarde!")
+    })
   }
 
-  const removeIngredient = (deleted) => setProductIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted))
+  const removeIngredient = (ingredientId) => {
+    api.delete(`/ingredients/${productId}/${ingredientId}`).catch(err => {
+      err ? alert(err.response.data.message) : alert("Error")
+    }).then(() => {
+      fetchIngredients()
+    }).catch(err => err ? alert(err.response.data.message) : alert("Error ao remover o ingrediente, tente novamente mais tarde!"))
+  }
   
-  function submitNewProduct() {
+  const updateProduct = () => {
     const file = inputFile.current.files[0]
     const product = new FormData() // Cria um objeto FormData para enviar os dados do produto.
     
@@ -50,8 +99,7 @@ export function EditProduct() {
     product.append('description', productDescription)
     product.append('price', productPrice)
     product.append('image', file)
-    product.append('category_id', productCategory)
-    product.append('ingredients', JSON.stringify(productIngredients))
+    product.append('category_id', productNewCategory)
     
     if (newIngredient !== "") {
       alert(`Você não adicionou o ingrediente "${newIngredient.toUpperCase()}"!`)
@@ -60,13 +108,10 @@ export function EditProduct() {
 
     switch (true) {
       case !productName:
-        return alert('O campo "Nome" não pode ficar em branco!');
+        return alert('O campo "Nome" não pode ficar em branco!')
     
       case !productCategory:
-        return alert('O campo "Categoria" não pode ficar em branco!');
-    
-      case !productIngredients || productIngredients.length === 0:
-        return alert("Pelo menos um Ingrediente é obrigatório!")
+        return alert('O campo "Categoria" não pode ficar em branco!')
     
       case !productPrice:
         return alert('O campo "Preço" não pode ficar em branco!')
@@ -78,57 +123,30 @@ export function EditProduct() {
     }
     
     api.put(`/products/${productId}`, product).catch((err) => {
-      if(err){
-        alert(err.response.data.message)
-      } else {
-        alert("Error")
-      }
-    }).then(() => {
-      alert("Os dados do produto foram atualizados!")
-    }).catch((err) => {
-      if(err){
-        alert(err.response.data.message)
-      } else {
-        alert("Falha ao atualizar os dados do produto, tente novamente mais tarde!")
-      }
-    })
+        if(err){
+          alert(err.response.data.message)
+        } else {
+          alert("Error")
+        }
+      }).then(() => {
+        alert("Os dados do produto foram atualizados!")
+        inputFile.current.value = ''
+        setProductImageUpload(product.image)
+        fetchProduct()
+      }).catch((err) => {
+        if(err){
+          alert(err.response.data.message)
+        } else {
+          alert("Falha ao atualizar os dados do produto, tente novamente mais tarde!")
+        }
+      })
   }
 
-  useEffect(() => {
-    async function fetchDataProduct() {
-        try {
-            const response = await api.get(`/products/${productId}`)
-            const { product, category, ingredients } = response.data
-
-            const allIngredients = []
-            ingredients.map((ingredient) => allIngredients.push(ingredient.name))
-
-            setProductImageUpload(product.image)
-            setProductName(product.name)
-            setProductCategory(category)
-            setProductDescription(product.description)
-            setProductPrice(product.price)
-            setProductIngredients(allIngredients)
-        } catch (err) {
-            console.log(err)
-        }
-    }
-    
-    async function fetchDataCategories() {
-      try {
-          const response = await api.get("/products/index")
-          const { categories } = response.data
-          setCategories(categories)
-      } catch (err) {
-          console.log(err)
-      }
-    }
-
-    fetchDataCategories()
-    fetchDataProduct()
-}, [productId])
-
-console.log(productCategory.id)
+  useEffect(() => {  
+    fetchProduct()
+    fetchCategories()
+    fetchIngredients()
+  }, [fetchProduct, fetchCategories, fetchIngredients])
 
   return (
     <Container>
@@ -147,7 +165,7 @@ console.log(productCategory.id)
         <Input idInput="product-name" htmlFor="product-name" label="Nome" type="text" placeholder="Ex.:Salada Ceasar" value={productName} onChange={e => setProductName(e.target.value)}/>
         <div className="select">
           <label htmlFor="categories">Categoria</label>
-          <select id="categories" value={productCategory.id} onChange={e => setProductCategory(e.target.value)}>
+          <select id="categories" onChange={e => setProductNewCategory(e.target.value)}>
             <option value={productCategory.id}>{productCategory.category}</option>
             {categories.map((category) => <option key={category.id} value={category.id}>{category.category}</option>)}
           </select>
@@ -156,7 +174,7 @@ console.log(productCategory.id)
         <Ingredients>
           <p>Ingredientes</p>
           <div>
-            {productIngredients.map((ingredient, index) => <button key={index} className='remove' onClick={e => e.preventDefault()}>{ingredient}<abbr title="Remover"><X onClick={() => removeIngredient(ingredient)}/>
+            {productIngredients.map((ingredient, index) => <button key={index} className='remove' value={ingredient.id} onClick={e => e.preventDefault()}>{ingredient.name}<abbr title="Remover"><X onClick={() => removeIngredient(ingredient.id)}/>
             </abbr></button>)}
             <span className='add'><input className="add" type="text" placeholder="Adicionar" value={newIngredient} onChange={e => setNewIngredient(e.target.value)}/><abbr title="Adicionar">
               <Plus onClick={addIngredients}/>
@@ -168,9 +186,9 @@ console.log(productCategory.id)
           <label htmlFor="description">Descrição</label>
           <textarea id="description" cols="30" rows="10" placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" value={productDescription} onChange={e => setProductDescription(e.target.value)}/>
         </div>
-        <Button onClick={submitNewProduct}>Salvar alterações</Button>
+        <Button onClick={updateProduct}>Salvar alterações</Button>
       </Content>
       <Footer />
-  </Container>
+    </Container>
   )
 }

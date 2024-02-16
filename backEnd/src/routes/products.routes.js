@@ -1,4 +1,4 @@
-const { Router, response} = require('express')
+const { Router } = require('express')
 const productsRoutes = Router()
 
 const multer = require('multer')
@@ -10,9 +10,6 @@ const products = new ProductsController()
 const ProductsSearchController = require('../controllers/ProductsSearchController')
 const searchProducts = new ProductsSearchController()
 
-const ProductImageController = require('../controllers/ProductImageController')
-const productImage = new ProductImageController()
-
 const upload = multer(uploadConfigs.MULTER)
 
 const checkAuth = require("../middlewares/checkAuth")
@@ -23,8 +20,6 @@ productsRoutes.post("/", upload.single("image"), products.create)
 productsRoutes.get("/index", products.index)
 productsRoutes.put("/:id", upload.single("image"), products.update)
 productsRoutes.delete("/:id", products.delete)
-
-productsRoutes.patch("/image/:id", upload.single("image"), productImage.update)
 
 productsRoutes.get("/:id", searchProducts.searchProduct)
 productsRoutes.get("/", searchProducts.searchProducts)
