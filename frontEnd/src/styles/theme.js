@@ -9,6 +9,7 @@ export default {
         BG_CARD_LOGIN: '#001119',
         BG_CARD_ITEM: '#00070A',
         BG_BUTTON: '#750310',
+        BG_BUTTON_DISABLED: '#AB4D55',
         BG_TAG: '#192227',
         BG_TAG_INPUT: '#76797B',
         

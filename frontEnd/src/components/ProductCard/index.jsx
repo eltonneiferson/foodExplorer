@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { Button } from '../Button'
 import { useAuth } from './../../hooks/authContext'
 
-export function Card ({ product, img, price, quantity, productId }) {
+export function ProductCard ({ product, img, price, quantity, productId }) {
     const { user } = useAuth()
     return (
         <Container>

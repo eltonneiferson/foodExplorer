@@ -1,14 +1,14 @@
 import { Container, Content } from './styles.js'
-import { Header } from '../../components/Header'
-import { Footer } from '../../components/Footer'
+import { Header } from '../../components/Header/index.jsx'
+import { Footer } from '../../components/Footer/index.jsx'
 import { Minus, Plus, Receipt, ChevronLeft } from 'lucide-react'
 import { Button } from '../../components/Button/index.jsx'
 import { Link, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { api } from './../../services/api'
-import { useAuth } from '../../hooks/authContext'
+import { api } from '../../services/api.js'
+import { useAuth } from '../../hooks/authContext.jsx'
 
-export function Product() {
+export function ProductDetails() {
   const [productDetails, setProductDetails] = useState([])
   const [productIngredients, setProductIngredients] = useState([])
   const [orderQuantity, setProductQuantity] = useState(1)

@@ -9,15 +9,15 @@ import { Upload, X, Plus, ChevronDown } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 import { api } from "../../services/api.js"
 
-export function NewProduct() { 
-  const [categories, setCategories] = useState([])
-  const [ productImageUpload, setProductImageUpload] = useState('Selecione uma imagem')
-  const [ productName, setProductName] = useState('')
-  const [ productDescription, setProductDescription] = useState('')
-  const [ productPrice, setProductPrice] = useState('')
-  const [ productIngredients, setProductIngredients] = useState([])
-  const [ productCategory, setProductCategory] = useState('')
-  const [ newIngredient, setNewIngredient] = useState('')
+export function RegisterProduct() { 
+  const [ categories, setCategories ] = useState([])
+  const [ productImageUpload, setProductImageUpload ] = useState('Selecione uma imagem')
+  const [ productName, setProductName ] = useState('')
+  const [ productDescription, setProductDescription ] = useState('')
+  const [ productPrice, setProductPrice ] = useState('')
+  const [ productIngredients, setProductIngredients ] = useState([])
+  const [ productCategory, setProductCategory ] = useState('')
+  const [ newIngredient, setNewIngredient ] = useState('')
   
   const inputFile = useRef(null)
 
@@ -53,11 +53,6 @@ export function NewProduct() {
     product.append('image', file)
     product.append('category_id', productCategory)
     product.append('ingredients', JSON.stringify(productIngredients))
-    
-    if (newIngredient !== "") {
-      alert(`Você não adicionou o ingrediente "${newIngredient.toUpperCase()}"!`)
-      return
-    }
 
     switch (true) {
       case !file:
@@ -71,6 +66,9 @@ export function NewProduct() {
     
       case !productIngredients || productIngredients.length === 0:
         return alert("Pelo menos um Ingrediente é obrigatório!")
+      
+      case newIngredient !== "":
+        return alert(`Você não adicionou o ingrediente "${newIngredient.toUpperCase()}"!`)
     
       case !productPrice:
         return alert('O campo "Preço" é obrigatório!')
@@ -155,7 +153,7 @@ export function NewProduct() {
           <label htmlFor="description">Descrição</label>
           <textarea id="description" cols="30" rows="10" placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" value={productDescription} onChange={e => setProductDescription(e.target.value)}/>
         </div>
-        <Button onClick={submitNewProduct}>Salvar alterações</Button>
+        <Button disabled={productDescription ? false : true} onClick={submitNewProduct}>Salvar alterações</Button>
       </Content>
       <Footer />
   </Container>

@@ -9,7 +9,7 @@ import { Upload, X, Plus, ChevronDown } from 'lucide-react'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { api } from "../../services/api.js"
 
-export function EditProduct() { 
+export function UpdateProduct() { 
   const [categories, setCategories] = useState([])
   const [ productImageUpload, setProductImageUpload] = useState('')
   const [ productName, setProductName] = useState('')

@@ -9,9 +9,18 @@ export const Container = styled.button `
     border-radius: 5px;
     font-family: 'Poppins', sans-serif;
     cursor: pointer;
-
+    
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
+    opacity: .9;
+    
+    &:disabled {
+        background-color: ${( { theme } ) => theme.COLORS.BG_BUTTON_DISABLED};
+    }
+
+    &:hover {
+        opacity: 1;
+    }
 `

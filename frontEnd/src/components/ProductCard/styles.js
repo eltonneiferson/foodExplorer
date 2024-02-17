@@ -25,6 +25,8 @@ export const Container = styled.div `
     
     img {
         width: clamp(88px, 18vw, 176px);
+        height: clamp(88px, 18vw, 176px);
+        border-radius: 100%;
     }
 
     a {

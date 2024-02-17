@@ -5,12 +5,12 @@ import 'swiper/css'
 import { Navigation } from 'swiper/modules'
 import 'swiper/css/navigation'
 
-import { Card } from '../Card/index.jsx'
+import { ProductCard } from '../ProductCard'
 
-import { api } from "../../services/api"
+import { api } from "../../services/api.js"
 import { useEffect, useState } from 'react'
 
-export function Products () {
+export function ProductCarousel () {
     const [categories, setCategories] = useState([])
     const [products, setProducts] = useState([])
 
@@ -41,7 +41,7 @@ export function Products () {
                             {categoryProducts.map((product) => {
                                 return (
                                     <SwiperSlide key={product.id}>
-                                        <Card product={product.name + " >"} img={`${api.defaults.baseURL}/files/${product.image}`} price={"R$ " + product.price} quantity="01" productId={product.id}/>
+                                        <ProductCard product={product.name + " >"} img={`${api.defaults.baseURL}/files/${product.image}`} price={"R$ " + product.price} quantity="01" productId={product.id}/>
                                     </SwiperSlide>
                                 )
                             }

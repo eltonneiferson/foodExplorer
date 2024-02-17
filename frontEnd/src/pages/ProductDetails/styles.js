@@ -34,6 +34,8 @@ export const Content = styled.main `
 
             > img {
                 width: 264px;
+                height: 264px;
+                border-radius: 100%;
             }
 
             div.about {
@@ -100,7 +102,8 @@ export const Content = styled.main `
                 flex-direction: row;
 
                 > img {
-                    width: clamp(300px, 45vw, 390px);
+                    width: clamp(264px, 45vw, 390px);
+                    height: clamp(264px, 45vw, 390px);
                 }
 
                 div.about {
