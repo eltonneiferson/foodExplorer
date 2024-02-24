@@ -1,12 +1,12 @@
 import { Container } from './styles.js'
 import { Logo } from './../Logo/index'
-import { Receipt, Menu, X, Search, LogOut  } from 'lucide-react'
-import { Input } from './../Input/index'
+import { Receipt, Menu, X, LogOut  } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Footer } from './../Footer/index'
 import { Button } from './../Button/index'
 import { useState, useEffect } from 'react'
 import { useAuth } from "../../hooks/authContext"
+import { SearchProducts } from '../SearchProducts'
 
 export function Header() {
     const { SignOut, user } = useAuth()
@@ -24,7 +24,7 @@ export function Header() {
                 {!menuMobileOpen ? <Menu onClick={openMenu} cursor='pointer' className='menu-icon'/> : <p><X onClick={closeMenu} cursor='pointer'/>Menu</p>}
                 {!menuMobileOpen && user.is_admin === 1 ? <Logo isAdmin={true}/> : !menuMobileOpen && <Logo/>}
                 <div className='input'>
-                    <Input id="search" type="text" placeholder='Busque por pratos ou ingredientes' icon={Search}/>
+                    <SearchProducts/>
                     <div className="options">
                         {menuMobileOpen && user.is_admin === 1 && <Link to="/new-product">Novo Produto</Link>}
                         {menuMobileOpen && <Link to="/" onClick={SignOut}>Sair</Link>}

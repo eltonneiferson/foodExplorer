@@ -79,12 +79,11 @@ export const Container = styled.header `
                     border-bottom: 1px solid ${({ theme }) => theme.COLORS.BG_TAG};
                 }
             }
-
         }
     }
 
-    @media (min-width:768px) {
-        padding: 24px;
+    @media (min-width:800px) {
+        padding: 1.5rem;
         
         .menu-close {
             justify-content: center;

@@ -1,11 +1,12 @@
 import { Container } from './styles.js'
-import { Heart, Minus, Plus, Pencil } from 'lucide-react'
+import { Heart, Pencil } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 import { Button } from '../Button'
 import { useAuth } from './../../hooks/authContext'
+import { QuantityProductButton } from '../quantityProductButton'
 
-export function ProductCard ({ product, img, price, quantity, productId }) {
+export function ProductCard ({ product, img, price, productId }) {
     const { user } = useAuth()
     return (
         <Container>
@@ -14,7 +15,7 @@ export function ProductCard ({ product, img, price, quantity, productId }) {
             <Link to={`/product/${productId}`}>{product}</Link>
             <p>{price}</p>
             {user.is_admin === 0 && <div className='buttons'>
-                <div><Minus />{quantity}<Plus /></div>
+                <QuantityProductButton/>
                 <Button>incluir</Button>
             </div>}
         </Container>

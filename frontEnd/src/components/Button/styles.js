@@ -15,6 +15,8 @@ export const Container = styled.button `
     justify-content: center;
     gap: 5px;
     opacity: .9;
+
+    user-select: none;
     
     &:disabled {
         background-color: ${( { theme } ) => theme.COLORS.BG_BUTTON_DISABLED};

@@ -49,12 +49,6 @@ export const Container = styled.div `
         flex-direction: column;
         align-items: center;
         gap: 16px;
-        
-        > div {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
     }
 
     @media (min-width: 768px) {

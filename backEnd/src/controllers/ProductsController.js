@@ -43,8 +43,6 @@ class ProductsController {
         const [ product ] = await knex("products").where("id", id)
         const diskStorage = new DiskStorage()
 
-        console.log(product.id)
-
         if (!product) {
             throw new AppError("Produto não encontrado!")
         }

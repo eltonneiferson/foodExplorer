@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.h1 `
     display: flex;
     align-items: center;
-    gap: 0.625rem;
+    gap: 0.6rem;
     font-size: clamp(2rem, 3vw, 2.7rem);
     font-weight: 700;
     line-height: normal;

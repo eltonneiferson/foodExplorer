@@ -1,27 +1,20 @@
 import { Container, Content } from './styles.js'
 import { Header } from '../../components/Header/index.jsx'
 import { Footer } from '../../components/Footer/index.jsx'
-import { Minus, Plus, Receipt, ChevronLeft } from 'lucide-react'
+import { Receipt, ChevronLeft } from 'lucide-react'
 import { Button } from '../../components/Button/index.jsx'
 import { Link, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { api } from '../../services/api.js'
 import { useAuth } from '../../hooks/authContext.jsx'
+import { QuantityProductButton } from './../../components/quantityProductButton'
 
 export function ProductDetails() {
   const [productDetails, setProductDetails] = useState([])
   const [productIngredients, setProductIngredients] = useState([])
-  const [orderQuantity, setProductQuantity] = useState(1)
 
   const { productId } = useParams()
   const { user } = useAuth()
-
-  function removeQuantity(){
-    if (orderQuantity == 1) {
-      return
-    }
-    setProductQuantity(prevState => prevState - 1)
-  }
 
   useEffect(() => {
     async function fetchData() {
@@ -53,9 +46,7 @@ export function ProductDetails() {
             </div>
             {user.is_admin === 1 ? <Button><Link to={`/edit-product/${productDetails.id}`}>Editar prato</Link></Button> : 
             <div className='buttons'>
-              <p>
-                <Minus cursor="pointer" onClick={removeQuantity}/>{String(orderQuantity).padStart(2, "0")}<Plus cursor="pointer" onClick={() => setProductQuantity(prevState => prevState + 1)}/>
-              </p>
+              <QuantityProductButton/>
               <Button><Receipt/>pedir&nbsp;&bull; R$ 25,00</Button>
             </div>}
           </div>

@@ -79,23 +79,11 @@ export const Content = styled.main `
                     align-items: center;
                     font-size: 1.4141rem;
                     font-weight: 700;
-                    
-                    > p {
-                        display: flex;
-                        gap: 0.75rem;
-                        font-weight: 300;
-                        align-items: center;
-        
-                        > svg {
-                            width: 1.6875rem;
-                            height: 1.6875rem;
-                        }
-                    }
                 }
             }
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 800px) {
             margin: 1.5rem auto;
             
             div.description {
@@ -108,6 +96,10 @@ export const Content = styled.main `
 
                 div.about {
                     align-items: start;
+
+                    h2 {
+                        text-align: start;
+                    }
 
                     p {
                         text-align: justify;
