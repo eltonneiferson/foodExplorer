@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Carousel = styled.div `   
-    width: clamp(400px, 100%, 1122px);
+    width: clamp(400px, 90vw, 1122px);
     margin: 0 auto;
     
     h1 {

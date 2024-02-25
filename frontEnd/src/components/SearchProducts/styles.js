@@ -18,8 +18,9 @@ export const Results = styled.div `
     
     position: absolute;
     width: 100%;
+    max-height: 50vh;
     top: 3.4rem;
-
+    
     > p.not-found {
         padding: 3rem;
         text-align: center;
