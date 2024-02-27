@@ -18,10 +18,11 @@ export function SearchProducts () {
                 setResults([])
             }
         }
-
-        product.trim() == '' ? setResults([]) : searchProduct()
         
+        product.trim() == '' ? setResults([]) : searchProduct()
+
     }, [product])
+    
 
     return (
         <Container>
@@ -29,16 +30,15 @@ export function SearchProducts () {
             {product &&
                 <Results>
                     {results.length > 0 ? results.map((product) => {
+                        const ingredients = product.ingredients.split(',')
                         return (
                             <div className='results' key={product.id}>
                                 <img src={`${api.defaults.baseURL}/files/${product.image}`} alt=""/>
                                 <div className='product'>
-                                <Link to={`/product/${product.id}`}>{product.name}</Link>
+                                <Link to={`/product/${product.id}`}>{product.name + " >"}</Link>
                                 <p>{"R$ " + product.price}</p>
                                 <div className='ingredients'>
-                                    <span>batata</span>
-                                    <span>alface</span>
-                                    <span>tomate</span>
+                                    {ingredients.map((ingredient, index) => <span key={index}>{ingredient}</span>)}
                                 </div>
                                 </div>
                             </div>

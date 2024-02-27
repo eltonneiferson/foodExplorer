@@ -56,6 +56,7 @@ export const Results = styled.div `
         
                 > div.ingredients {
                     display: flex;
+                    flex-wrap: wrap;
                     gap: .5rem;
         
                     > span {
