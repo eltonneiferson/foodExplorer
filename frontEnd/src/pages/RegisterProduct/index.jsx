@@ -47,9 +47,9 @@ export function RegisterProduct() {
     const file = inputFile.current.files[0]
     const product = new FormData() // Cria um objeto FormData para enviar os dados do produto.
     
-    product.append('name', productName)
-    product.append('description', productDescription)
-    product.append('price', productPrice)
+    product.append('name', productName.trim())
+    product.append('description', productDescription.trim())
+    product.append('price', productPrice.trim())
     product.append('image', file)
     product.append('category_id', productCategory)
     product.append('ingredients', JSON.stringify(productIngredients))
@@ -103,17 +103,17 @@ export function RegisterProduct() {
   }
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchCategories() {
         try {
-            const response = await api.get("/products/index")
+            const response = await api.get("/categories")
             const { categories } = response.data
             setCategories(categories)
         } catch (err) {
             console.log(err)
         }
     }
-    fetchData()
-}, [])
+    fetchCategories()
+  }, [])
 
   return (
     <Container>

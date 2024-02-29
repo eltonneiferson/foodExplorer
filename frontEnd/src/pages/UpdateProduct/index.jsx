@@ -10,7 +10,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { api } from "../../services/api.js"
 
 export function UpdateProduct() { 
-  const [categories, setCategories] = useState([])
+  const [ categories, setCategories ] = useState([])
   const [ productImageUpload, setProductImageUpload] = useState('')
   const [ productName, setProductName] = useState('')
   const [ productDescription, setProductDescription] = useState('')
@@ -26,18 +26,13 @@ export function UpdateProduct() {
   const fetchProduct = useCallback(async () => {
     try {
         const response = await api.get(`/products/${productId}`)
-        const { product, category, ingredients } = response.data
-
-        const allIngredients = []
-        ingredients.map((ingredient) => allIngredients.push(ingredient.name))
+        const { product } = response.data
 
         setProductImageUpload(product.image)
         setProductName(product.name)
-        setProductCategory(category)
-        setProductNewCategory(category.id)
+        setProductCategory({category_id: product.category_id ,category: product.category})
         setProductDescription(product.description)
         setProductPrice(product.price)
-        setProductIngredients(ingredients)
     } catch (err) {
         console.log(err)
     }
@@ -45,7 +40,7 @@ export function UpdateProduct() {
 
   const fetchCategories = useCallback(async () => {
     try {
-        const response = await api.get("/products/index")
+        const response = await api.get("/categories")
         const { categories } = response.data
         const filterCategories = categories.filter(category => category.id !== productCategory.id)
         setCategories(filterCategories)
@@ -71,7 +66,7 @@ export function UpdateProduct() {
     }
 
     api.post("/ingredients", { 
-      name: newIngredient,
+      name: newIngredient.trim(),
       product_id: productId
     }).catch( err => {
       err ? alert(err.response.data.message) : alert("Error")
@@ -95,9 +90,9 @@ export function UpdateProduct() {
     const file = inputFile.current.files[0]
     const product = new FormData() // Cria um objeto FormData para enviar os dados do produto.
     
-    product.append('name', productName)
-    product.append('description', productDescription)
-    product.append('price', productPrice)
+    product.append('name', productName.trim())
+    product.append('description', productDescription.trim())
+    product.append('price', productPrice.trim())
     product.append('image', file)
     product.append('category_id', productNewCategory)
     
@@ -153,7 +148,7 @@ export function UpdateProduct() {
       <Header />
       <Content>
         <Link to="/"><ChevronLeft/>voltar</Link>
-        <h1>Novo prato</h1>
+        <h1>Editar prato</h1>
         <div className='input-file'>
           <p>Imagem do prato</p>
           <div>
@@ -166,7 +161,7 @@ export function UpdateProduct() {
         <div className="select">
           <label htmlFor="categories">Categoria</label>
           <select id="categories" onChange={e => setProductNewCategory(e.target.value)}>
-            <option value={productCategory.id}>{productCategory.category}</option>
+            <option value={productCategory.category_id}>{productCategory.category}</option>
             {categories.map((category) => <option key={category.id} value={category.id}>{category.category}</option>)}
           </select>
           <ChevronDown/>
@@ -174,11 +169,14 @@ export function UpdateProduct() {
         <Ingredients>
           <p>Ingredientes</p>
           <div>
-            {productIngredients.map((ingredient, index) => <button key={index} className='remove' value={ingredient.id} onClick={e => e.preventDefault()}>{ingredient.name}<abbr title="Remover"><X onClick={() => removeIngredient(ingredient.id)}/>
-            </abbr></button>)}
-            <span className='add'><input className="add" type="text" placeholder="Adicionar" value={newIngredient} onChange={e => setNewIngredient(e.target.value)}/><abbr title="Adicionar">
-              <Plus onClick={addIngredients}/>
-            </abbr></span>
+            {productIngredients.map((ingredient, index) =>
+              <button key={index} className='remove' value={ingredient.id} onClick={e => e.preventDefault()}>{ingredient.name}
+                <abbr title="Remover"><X onClick={() => removeIngredient(ingredient.id)}/></abbr>
+              </button>)}
+              <span className='add'>
+                  <input type="text" placeholder="Adicionar" value={newIngredient} onChange={e => setNewIngredient(e.target.value)}/>
+                  <abbr title="Adicionar"><Plus onClick={addIngredients}/></abbr>
+              </span>
           </div>
         </Ingredients>
         <Input idInput="price" htmlFor="price" label="Preço" type="text" placeholder="R$ 00,00" value={productPrice} onChange={e => setProductPrice(e.target.value)}/>

@@ -15,19 +15,28 @@ export function ProductCarousel () {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        async function fetchData() {
+        async function fetchCategories() {
             try {
-                const response = await api.get("/products/index")
-                const { categories, products } = response.data
-                setCategories(categories) 
+                const response = await api.get("/categories")
+                const { categories } = response.data
+                setCategories(categories)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        
+        async function fetchProducts() {
+            try {
+                const response = await api.get("/products")
+                const { products } = response.data
                 setProducts(products) 
             } catch (err) {
                 console.log(err)
             }
         }
 
-        fetchData()
-
+        fetchCategories()
+        fetchProducts()
     }, [])
     
     return (

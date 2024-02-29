@@ -20,10 +20,10 @@ export function ProductDetails() {
     async function fetchData() {
         try {
           const response = await api.get(`/products/${productId}`)
-          const { product, ingredients } = response.data
-              
-          setProductDetails(product)
-          setProductIngredients(ingredients)
+          const ingredients = response.data.ingredients
+
+          setProductDetails(response.data)
+          setProductIngredients(ingredients.split(","))
         } catch (err) {
           console.log(err)
         }
@@ -37,12 +37,12 @@ export function ProductDetails() {
       <Content>
         <Link to="/"><ChevronLeft/>voltar</Link>
         <div className='description'>
-          {<img src={`${api.defaults.baseURL}/files/${productDetails.image}`} alt="" />}
+          <img src={`${api.defaults.baseURL}/files/${productDetails.image}`} alt="" />
           <div className="about">
             <h2>{productDetails.name}</h2>
             <p>{productDetails.description}</p>
             <div className='tags'>
-              {productIngredients.map(ingredient => <span key={ingredient.id}>{ingredient.name}</span>)}
+              {productIngredients.map((ingredient, index) => <span key={index}>{ingredient}</span>)}
             </div>
             {user.is_admin === 1 ? <Button><Link to={`/edit-product/${productDetails.id}`}>Editar prato</Link></Button> : 
             <div className='buttons'>

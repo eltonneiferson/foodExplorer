@@ -17,11 +17,11 @@ const checkAuth = require("../middlewares/checkAuth")
 productsRoutes.use(checkAuth) // Middleware applied to all routes
 
 productsRoutes.post("/", upload.single("image"), products.create)
-productsRoutes.get("/index", products.index)
+productsRoutes.get("/", products.index)
 productsRoutes.put("/:id", upload.single("image"), products.update)
 productsRoutes.delete("/:id", products.delete)
 
 productsRoutes.get("/:id", searchProducts.searchProduct)
-productsRoutes.get("/", searchProducts.searchProducts)
+productsRoutes.get("/", searchProducts.searchAllProducts)
 
 module.exports = productsRoutes

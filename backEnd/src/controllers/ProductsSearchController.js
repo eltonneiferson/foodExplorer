@@ -3,7 +3,7 @@ const knex = require('../database/knex')
 const AppError = require('../utils/AppError')
 
 class ProductsSearchController {
-    async searchProducts(req, res) {
+    async searchAllProducts(req, res) {
         const { search } = req.query
 
         if( !search ) {
@@ -34,7 +34,7 @@ class ProductsSearchController {
             .select("products.*","categories.category", knex.raw("GROUP_CONCAT(ingredients.name) as ingredients"))
             .first()
         
-        return res.json(product)
+        return res.json({product})
     }
 }
 

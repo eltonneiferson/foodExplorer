@@ -80,10 +80,9 @@ class ProductsController {
     }
 
     async index(req, res) {
-        const categories = await knex("categories").select()
         const products = await knex("products").select()
 
-        return res.json({categories, products})
+        return res.json({products})
     }
 }
 
