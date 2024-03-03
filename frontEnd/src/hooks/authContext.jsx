@@ -17,9 +17,9 @@ export function AuthProvider({ children }){
             api.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
             setData({ user, token })
-        } catch (err) {
-            if (err){
-                alert(err.response.data.message)
+        } catch (error) {
+            if (error){
+                alert(error.response.data.message)
             } else {
                 alert("Não foi possível realizar o login, tente novamente mais tarde!")
             }

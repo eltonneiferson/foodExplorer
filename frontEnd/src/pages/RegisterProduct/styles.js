@@ -13,11 +13,6 @@ export const Content = styled.form `
     grid-template-rows: max-content 1fr;
     gap: 1.5rem;
 
-        > h1 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: normal;
-        }
-
         > a {
             font-family: 'Poppins', sans-serif;
             font-size: 1rem;
@@ -31,54 +26,85 @@ export const Content = styled.form `
             }
         }
 
-        > div.input-file {
+        > h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: normal;
+        }
+
+        > div.first-section {
             display: grid;
             gap: 1rem;
-            
-            > p {
-                color: ${( { theme } ) => theme.COLORS.LABEL};
-            }
 
-            > div {
-                background-color: ${( { theme } ) => theme.COLORS.BG_INPUT};
-                padding: 0.8rem;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                border-radius: 8px;
-
-                > label {
-                    cursor: pointer;
+            > div.input-file {
+                display: grid;
+                gap: 1rem;
+                
+                > p {
+                    color: ${( { theme } ) => theme.COLORS.LABEL};
                 }
     
-                > input {
-                    display: none;
+                > div {
+                    background-color: ${( { theme } ) => theme.COLORS.BG_INPUT};
+                    padding: 0.8rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    border-radius: 8px;
+    
+                    > label {
+                        cursor: pointer;
+                    }
+        
+                    > input {
+                        display: none;
+                    }
+                }
+            }
+
+            > div.select {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                position: relative;
+                
+                > select {
+                    background-color: ${( { theme } ) => theme.COLORS.BG_INPUT};
+                    font-family: 'Roboto', sans-serif;
+                    font-family: .9rem;
+                    padding: 1rem;
+                    border: none;
+                    border-radius: 8px;
+                    resize: none;
+                    cursor: pointer;
+                    appearance: none;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                }
+
+                > label {
+                    color: ${( { theme } ) => theme.COLORS.LABEL};
+                }
+                
+                > svg {
+                    cursor: pointer;
+                    position: absolute;
+                    bottom: 0.75rem;
+                    right: 1rem;
                 }
             }
         }
 
-        > input.input-file {
-            cursor: pointer;
+        > div.second-section {
+            display: grid;
+            gap: 1rem;
         }
 
-        > div.select, div.textarea {
-            display: flex;
-            flex-direction: column;
+        > div.textarea {
+            display: grid;
             gap: 1rem;
             position: relative;
 
-            > label {
-                color: ${( { theme } ) => theme.COLORS.LABEL};
-            }
-            
-            > select {
-                cursor: pointer;
-                appearance: none;
-                -webkit-appearance: none;
-                -moz-appearance: none;
-            }
-            
-            > select, textarea {
+            > textarea {
                 background-color: ${( { theme } ) => theme.COLORS.BG_INPUT};
                 font-family: 'Roboto', sans-serif;
                 font-family: 1rem;
@@ -87,17 +113,23 @@ export const Content = styled.form `
                 border-radius: 8px;
                 resize: none;
             }
-
-            > svg {
-                cursor: pointer;
-                position: absolute;
-                bottom: 9px;
-                right: 1rem;
-            }
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 975px) {
             margin: 1.5rem auto;
+
+            > div.first-section {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            > div.second-section {
+                grid-template-columns: 1fr 16rem;
+            }
+
+            > button {
+                width: max-content;
+                justify-self: end;
+            }
         }
 `
 
@@ -113,24 +145,25 @@ export const Ingredients = styled.div `
     
     > div {
         background-color: ${( { theme } ) => theme.COLORS.BG_INPUT};
-        padding: 0.8rem;
+        padding: 8px;
         border-radius: 8px;
         display: flex;
         gap: 1rem;
         flex-wrap: wrap;
 
         > button.remove {
-            cursor: pointer;
-            background: ${({ theme }) => theme.COLORS.BG_TAG_INPUT};
             border: none;
-            padding: 6px 16px;
+            background: ${({ theme }) => theme.COLORS.BG_TAG_INPUT};
+            padding: 0.2rem 1rem;
             border-radius: 8px;
             display: flex;
             align-items: center;
-            gap: 8px;
-
+            gap: 5px;
+            
             svg {
+                cursor: pointer;
                 width: 1rem;
+                display: flex;
             }
         }
 
@@ -140,18 +173,19 @@ export const Ingredients = styled.div `
             border-radius: 8px;
             display: flex;
             align-items: center;
-            padding: 6px 16px;
+            padding: 0.2rem 1rem;
             
             > input {
-                width: 120px;
+                width: 5rem;
                 border: none;
                 background: none;
                 outline: none;
             }
 
             svg {
-                width: 1rem;
                 cursor: pointer;
+                width: 1rem;
+                display: flex;
             }
         }
         

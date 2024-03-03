@@ -13,23 +13,27 @@ export const Content = styled.form `
     grid-template-rows: max-content 1fr;
     gap: 1.5rem;
 
-        > h1 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: normal;
+    > a {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        
+        >svg {
+            width: 22px;
+            height: 22px;
         }
+    }
+    
+    > h1 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: normal;
+    }
 
-        > a {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-
-            >svg {
-                width: 22px;
-                height: 22px;
-            }
-        }
+    > div.first-section {
+        display: grid;
+        gap: 1rem;
 
         > div.input-file {
             display: grid;
@@ -46,7 +50,7 @@ export const Content = styled.form `
                 align-items: center;
                 gap: 8px;
                 border-radius: 8px;
-
+                
                 > label {
                     cursor: pointer;
                 }
@@ -57,48 +61,93 @@ export const Content = styled.form `
             }
         }
 
-        > input.input-file {
-            cursor: pointer;
-        }
+            > div.select {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                position: relative;
+                
+                > select {
+                    background-color: ${( { theme } ) => theme.COLORS.BG_INPUT};
+                    font-family: 'Roboto', sans-serif;
+                    font-family: .9rem;
+                    padding: 1rem;
+                    border: none;
+                    border-radius: 8px;
+                    resize: none;
+                    cursor: pointer;
+                    appearance: none;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                }
 
-        > div.select, div.textarea {
+                > label {
+                    color: ${( { theme } ) => theme.COLORS.LABEL};
+                }
+                
+                > svg {
+                    cursor: pointer;
+                    position: absolute;
+                    bottom: 0.75rem;
+                    right: 1rem;
+                }
+            }
+    }
+
+    > div.second-section {
+        display: grid;
+        gap: 1rem;
+    }
+
+    > div.textarea {
+        display: grid;
+        gap: 1rem;
+        position: relative;
+
+        > textarea {
+            background-color: ${( { theme } ) => theme.COLORS.BG_INPUT};
+            font-family: 'Roboto', sans-serif;
+            font-family: 1rem;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            resize: none;
+        }
+    }
+
+    > div.buttons {
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            position: relative;
+            gap: 2rem;
 
-            > label {
-                color: ${( { theme } ) => theme.COLORS.LABEL};
-            }
-            
-            > select {
-                cursor: pointer;
-                appearance: none;
-                -webkit-appearance: none;
-                -moz-appearance: none;
-            }
-            
-            > select, textarea {
-                background-color: ${( { theme } ) => theme.COLORS.BG_INPUT};
-                font-family: 'Roboto', sans-serif;
-                font-family: 1rem;
-                padding: 0.8rem;
-                border: none;
-                border-radius: 8px;
-                resize: none;
+            button {
+                padding: 12px;
             }
 
-            > svg {
-                cursor: pointer;
-                position: absolute;
-                bottom: 9px;
-                right: 1rem;
+            button:nth-child(1){
+                background: ${( { theme } ) => theme.COLORS.BG_BUTTON_DELETE};
             }
+    }
+
+    @media (min-width: 768px) {
+        margin: 1.5rem auto;
+
+        > div.first-section {
+            grid-template-columns: 1fr 1fr 1fr;
         }
 
-        @media (min-width: 768px) {
-            margin: 1.5rem auto;
+        > div.second-section {
+            grid-template-columns: 1fr 16rem;
         }
+
+        > div.buttons {
+            justify-content: end;
+
+            > button {
+                width: max-content;
+                padding: 0.75rem 2.25rem;
+            }
+        }
+    }
 `
 
 export const Ingredients = styled.div `

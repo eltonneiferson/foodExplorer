@@ -21,7 +21,7 @@ class UsersController {
 
         const encryptedPassword = await hash(password, 8)
 
-        await knex("users").insert({name, email, password: encryptedPassword, is_admin: false, status: true})
+        await knex("users").insert({name, email, password: encryptedPassword, is_admin: false})
         
         return res.status(201).json()
     }

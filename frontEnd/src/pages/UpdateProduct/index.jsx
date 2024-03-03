@@ -3,7 +3,7 @@ import { Header } from '../../components/Header/index.jsx'
 import { Footer } from '../../components/Footer/index.jsx'
 import { ChevronLeft } from 'lucide-react'
 import { Button } from '../../components/Button/index.jsx'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { Input } from '../../components/Input/index'
 import { Upload, X, Plus, ChevronDown } from 'lucide-react'
 import { useState, useEffect, useRef, useCallback } from 'react'
@@ -22,6 +22,7 @@ export function UpdateProduct() {
   
   const inputFile = useRef(null)
   const { productId } = useParams()
+  const navigate = useNavigate()
   
   const fetchProduct = useCallback(async () => {
     try {
@@ -139,6 +140,25 @@ export function UpdateProduct() {
       })
   }
 
+  const deleteProduct = () => {
+    api.delete(`/products/${productId}`).catch((err) => {
+      if(err){
+        alert(err.response.data.message)
+      } else {
+        alert("Error")
+      }
+    }).then(() => {
+      alert("Prato excluído!")
+      navigate("/")
+    }).catch((err) => {
+      if(err){
+        alert(err.response.data.message)
+      } else {
+        alert("Falha ao excluir prato, tente novamente mais tarde!")
+      }
+    })
+  }
+
   useEffect(() => {  
     fetchProduct()
     fetchCategories()
@@ -151,42 +171,49 @@ export function UpdateProduct() {
       <Content>
         <Link to={`/product/${productId}`}><ChevronLeft/>voltar</Link>
         <h1>Editar prato</h1>
-        <div className='input-file'>
-          <p>Imagem do prato</p>
-          <div>
-            <Upload/>
-            <label htmlFor="image-upload">{productImageUpload}</label>
-            <input id="image-upload" type="file" ref={inputFile} onChange={() => setProductImageUpload(inputFile.current.files[0].name)}/>
+        <div className="first-section">
+          <div className='input-file'>
+            <p>Imagem do prato</p>
+            <div>
+              <Upload/>
+              <label htmlFor="image-upload">{productImageUpload}</label>
+              <input id="image-upload" type="file" ref={inputFile} onChange={() => setProductImageUpload(inputFile.current.files[0].name)}/>
+            </div>
+          </div>
+          <Input idInput="product-name" htmlFor="product-name" label="Nome" type="text" placeholder="Ex.:Salada Ceasar" value={productName} onChange={e => setProductName(e.target.value)}/>
+          <div className="select">
+            <label htmlFor="categories">Categoria</label>
+            <select id="categories" onChange={e => setProductNewCategory(e.target.value)}>
+              <option value={productCategory.category_id}>{productCategory.category}</option>
+              {categories.map(category => <option key={category.id} value={category.id}>{category.category}</option>)}
+            </select>
+            <ChevronDown/>
           </div>
         </div>
-        <Input idInput="product-name" htmlFor="product-name" label="Nome" type="text" placeholder="Ex.:Salada Ceasar" value={productName} onChange={e => setProductName(e.target.value)}/>
-        <div className="select">
-          <label htmlFor="categories">Categoria</label>
-          <select id="categories" onChange={e => setProductNewCategory(e.target.value)}>
-            <option value={productCategory.category_id}>{productCategory.category}</option>
-            {categories.map(category => <option key={category.id} value={category.id}>{category.category}</option>)}
-          </select>
-          <ChevronDown/>
+        <div className="second-section">
+          <Ingredients>
+            <p>Ingredientes</p>
+            <div>
+              {productIngredients.map((ingredient, index) =>
+                <button key={index} className='remove' value={ingredient.id} onClick={e => e.preventDefault()}>{ingredient.name}
+                  <abbr title="Remover"><X onClick={() => removeIngredient(ingredient.id)}/></abbr>
+                </button>)}
+                <span className='add'>
+                    <input type="text" placeholder="Adicionar" value={newIngredient} onChange={e => setNewIngredient(e.target.value)}/>
+                    <abbr title="Adicionar"><Plus onClick={addIngredients}/></abbr>
+                </span>
+            </div>
+          </Ingredients>
+          <Input idInput="price" htmlFor="price" label="Preço" type="text" placeholder="R$ 00,00" value={productPrice} onChange={e => setProductPrice(e.target.value)}/>
         </div>
-        <Ingredients>
-          <p>Ingredientes</p>
-          <div>
-            {productIngredients.map((ingredient, index) =>
-              <button key={index} className='remove' value={ingredient.id} onClick={e => e.preventDefault()}>{ingredient.name}
-                <abbr title="Remover"><X onClick={() => removeIngredient(ingredient.id)}/></abbr>
-              </button>)}
-              <span className='add'>
-                  <input type="text" placeholder="Adicionar" value={newIngredient} onChange={e => setNewIngredient(e.target.value)}/>
-                  <abbr title="Adicionar"><Plus onClick={addIngredients}/></abbr>
-              </span>
-          </div>
-        </Ingredients>
-        <Input idInput="price" htmlFor="price" label="Preço" type="text" placeholder="R$ 00,00" value={productPrice} onChange={e => setProductPrice(e.target.value)}/>
         <div className="textarea">
           <label htmlFor="description">Descrição</label>
           <textarea id="description" cols="30" rows="10" placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" value={productDescription} onChange={e => setProductDescription(e.target.value)}/>
         </div>
-        <Button onClick={updateProduct}>Salvar alterações</Button>
+        <div className="buttons">
+          <Button onClick={deleteProduct}>Excluir Prato</Button>
+          <Button onClick={updateProduct}>Salvar alterações</Button>
+        </div>
       </Content>
       <Footer />
     </Container>

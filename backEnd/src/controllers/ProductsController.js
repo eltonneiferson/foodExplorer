@@ -28,7 +28,7 @@ class ProductsController {
         
         await knex("ingredients").insert(ingredientsInsert)
         
-        return res.status(201).send()
+        return res.status(201).json({product_id})
     }
 
     async update(req, res) {
@@ -67,8 +67,6 @@ class ProductsController {
         const { id } = req.params
 
         const [ product ] = await knex('products').select().where("id", id)
-        const productIngredients = await knex("ingredients").select().where({ product_id: id }).orderBy("name")
-        const productCategory = await knex("categories").select().where({ product_id: id })
 
         if (!product) {
             throw new AppError("Produto não encontrado!")
@@ -76,7 +74,7 @@ class ProductsController {
 
         await knex('products').where("id", id).del()
 
-        return res.json({...product, productCategory, productIngredients})
+        return res.status(200).json()
     }
 
     async searchAllProducts(req, res) {

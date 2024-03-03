@@ -22,7 +22,7 @@ export function Header() {
         <Container>
             <div className={!menuMobileOpen ? 'menu-close': 'menu-open'}>
                 {!menuMobileOpen ? <Menu onClick={openMenu} cursor='pointer' className='menu-icon'/> : <p><X onClick={closeMenu} cursor='pointer'/>Menu</p>}
-                {!menuMobileOpen && user.is_admin === 1 ? <Logo isAdmin={true}/> : !menuMobileOpen && <Logo/>}
+                {!menuMobileOpen && user.is_admin === 1 ? <Link to="/"><Logo isAdmin={true}/></Link> : !menuMobileOpen && <Link to="/"><Logo/></Link>}
                 <div className='input'>
                     <SearchProducts/>
                     <div className="options">

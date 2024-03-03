@@ -11,7 +11,6 @@ exports.seed = async function(knex) {
       password: await hash(passwordDefault, 8),
       avatar: "",
       is_admin: true,
-      status: true
     },
     {
       name: 'User',
@@ -19,7 +18,6 @@ exports.seed = async function(knex) {
       password: await hash(passwordDefault, 8),
       avatar: "",
       is_admin: false,
-      status: true
     }
   ])
 }
