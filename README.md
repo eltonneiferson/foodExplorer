@@ -29,18 +29,13 @@ ___
 
 Foram utilizadas as seguintes tecnologias para a criação deste projeto:
 
-<a href="https://reactjs.org" target="_blank"><img src="https://skillicons.dev/icons?i=react" /></a>
-<a href="https://nodejs.org/en/" target="_blank"><img src="https://skillicons.dev/icons?i=nodejs" /></a>
-
-- [ReactJs](https://reactjs.org) - [Node.js](https://nodejs.org/en/)
-- [pnpm](https://pnpm.io/pt/) - [Knex](https://knexjs.org/)
-- [Vite](https://vitejs.dev/) - [Express](https://expressjs.com)
-- [Nodemon](https://nodemon.io/) - [SQLite](https://www.sqlite.org/index.html)
-- [BCryptjs](https://www.npmjs.com/package/bcryptjs) - [JSON Web Token](https://www.npmjs.com/package/jsonwebtoken)
-- [Multer](https://www.npmjs.com/package/multer) - [CORS](https://www.npmjs.com/package/cors)
-- [Axios](https://www.npmjs.com/package/axios) - [Styled Components](https://styled-components.com/)
-- [Lucide](https://lucide.dev/) - [Swiper](https://swiperjs.com/)
-- [React Router Dom](https://react-icons.github.io/react-icons/)
+<abbr title="React"><a href="https://pt-br.react.dev/" target="_blank"><img src="https://skillicons.dev/icons?i=react" /></a></abbr>
+<abbr title="Node.js"><a href="https://nodejs.org/en/" target="_blank"><img src="https://skillicons.dev/icons?i=nodejs" /></a></abbr>
+<abbr title="pnpm"><a href="https://pnpm.io/pt/" target="_blank"><img src="https://skillicons.dev/icons?i=pnpm" /></a></abbr>
+<abbr title="Vite"><a href="https://vitejs.dev/" target="_blank"><img src="https://skillicons.dev/icons?i=vite" /></a></abbr>
+<abbr title="Express"><a href="https://expressjs.com" target="_blank"><img src="https://skillicons.dev/icons?i=express" /></a></abbr>
+<abbr title="SQLite"><a href="https://www.sqlite.org/" target="_blank"><img src="https://skillicons.dev/icons?i=sqlite" /></a></abbr>
+<abbr title="Styled Components"><a href="https://styled-components.com/" target="_blank"><img src="https://skillicons.dev/icons?i=styledcomponents" /></a></abbr>
 
 ___
 
