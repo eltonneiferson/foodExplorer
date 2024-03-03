@@ -40,18 +40,16 @@ Tecnologias utilizadas para a criação deste projeto:
 <a href="https://styled-components.com/" target="_blank"><img src="https://skillicons.dev/icons?i=styledcomponents"/></a>
 
 ```bash
-"otherTechnologies": {
-    axios,
-    lucide-react,
-    react-router-dom,
-    swiper,
-    bcryptjs,
-    cors,
-    express-async-errors,
-    jsonwebtoken,
-    knex,
-    multer,
-  }
+axios,
+lucide-react,
+react-router-dom,
+swiper,
+bcryptjs,
+cors,
+express-async-errors,
+jsonwebtoken,
+knex,
+multer,
 ```
 
 ___
