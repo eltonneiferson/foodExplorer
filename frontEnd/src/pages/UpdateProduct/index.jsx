@@ -31,6 +31,7 @@ export function UpdateProduct() {
         setProductImageUpload(product.image)
         setProductName(product.name)
         setProductCategory({category_id: product.category_id ,category: product.category})
+        setProductNewCategory(product.category_id)
         setProductDescription(product.description)
         setProductPrice(product.price)
     } catch (err) {
@@ -42,7 +43,8 @@ export function UpdateProduct() {
     try {
         const response = await api.get("/categories")
         const { categories } = response.data
-        const filterCategories = categories.filter(category => category.id !== productCategory.id)
+        const filterCategories = categories.filter(category => category.category !== productCategory.category)
+
         setCategories(filterCategories)
     } catch (err) {
         console.log(err)
@@ -147,7 +149,7 @@ export function UpdateProduct() {
     <Container>
       <Header />
       <Content>
-        <Link to="/"><ChevronLeft/>voltar</Link>
+        <Link to={`/product/${productId}`}><ChevronLeft/>voltar</Link>
         <h1>Editar prato</h1>
         <div className='input-file'>
           <p>Imagem do prato</p>
@@ -162,7 +164,7 @@ export function UpdateProduct() {
           <label htmlFor="categories">Categoria</label>
           <select id="categories" onChange={e => setProductNewCategory(e.target.value)}>
             <option value={productCategory.category_id}>{productCategory.category}</option>
-            {categories.map((category) => <option key={category.id} value={category.id}>{category.category}</option>)}
+            {categories.map(category => <option key={category.id} value={category.id}>{category.category}</option>)}
           </select>
           <ChevronDown/>
         </div>

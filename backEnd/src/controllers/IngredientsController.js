@@ -10,10 +10,8 @@ class IngredientsController {
 
         const filterIngredients = productIngredients.filter(ingredient => name === ingredient.name)
 
-        console.log(filterIngredients)
-
         if (filterIngredients.length > 0) {
-            throw new AppError(`Já existe um ingrediente com o nome "${name}" cadastrado para o produto!`)
+            throw new AppError(`Já existe um ingrediente com o nome "${name.toUpperCase()}" cadastrado para o produto!`)
         } 
         
         await knex("ingredients").insert({name, user_id, product_id, created_at: knex.fn.now()})

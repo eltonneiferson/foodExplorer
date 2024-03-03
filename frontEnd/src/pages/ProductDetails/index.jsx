@@ -20,9 +20,10 @@ export function ProductDetails() {
     async function fetchData() {
         try {
           const response = await api.get(`/products/${productId}`)
-          const ingredients = response.data.ingredients
+          const { product } = response.data
+          const ingredients = product.ingredients
 
-          setProductDetails(response.data)
+          setProductDetails(product)
           setProductIngredients(ingredients.split(","))
         } catch (err) {
           console.log(err)

@@ -12,7 +12,7 @@ export function SearchProducts () {
     useEffect(() => {
         async function searchProduct(){
             try {
-                const response = await api.get(`/products/?search=${product}`)
+                const response = await api.get(`/products/?search=${product}`)                
                 setResults(response.data)
             } catch (err) {
                 setResults([])

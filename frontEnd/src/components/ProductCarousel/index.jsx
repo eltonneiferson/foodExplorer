@@ -27,9 +27,8 @@ export function ProductCarousel () {
         
         async function fetchProducts() {
             try {
-                const response = await api.get("/products")
-                const { products } = response.data
-                setProducts(products) 
+                const response = await api.get("/products?search")
+                setProducts(response.data) 
             } catch (err) {
                 console.log(err)
             }

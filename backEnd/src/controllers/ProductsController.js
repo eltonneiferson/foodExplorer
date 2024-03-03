@@ -79,10 +79,33 @@ class ProductsController {
         return res.json({...product, productCategory, productIngredients})
     }
 
-    async index(req, res) {
-        const products = await knex("products").select()
+    async searchAllProducts(req, res) {
+        const { search } = req.query
+        const products = await knex("products")
+            .where("products.name", "like", `%${search}%`)
+            .orWhere("ingredients.name", "like", `%${search}%`)
+            .innerJoin("categories", "categories.id", "products.category_id")
+            .innerJoin("ingredients", "ingredients.product_id", "products.id")
+            .select("products.*","categories.category", knex.raw("GROUP_CONCAT(ingredients.name) as ingredients"))
+            .groupBy("products.id")
 
-        return res.json({products})
+        if (!products || products.length === 0) {
+            return res.status(404).send("Nenhum produto encontrado!")
+        }
+        
+        return res.json(products)
+    }
+
+    async searchProduct(req, res) {
+        const { id } = req.params
+        const product = await knex("products")
+            .where({ "products.id": id })
+            .innerJoin("categories", "categories.id", "products.category_id")
+            .innerJoin("ingredients", "ingredients.product_id", "products.id")
+            .select("products.*","categories.category", knex.raw("GROUP_CONCAT(ingredients.name) as ingredients"))
+            .first()
+        
+        return res.json({product})
     }
 }
 

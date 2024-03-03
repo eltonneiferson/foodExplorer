@@ -6,8 +6,8 @@ exports.seed = async function(knex) {
  
   await knex('users').insert([
     {
-      name: 'Elton',
-      email: 'eltonneiferson@outlook.com',
+      name: 'Admin',
+      email: 'admin@foodexplorer.com',
       password: await hash(passwordDefault, 8),
       avatar: "",
       is_admin: true,
@@ -15,7 +15,7 @@ exports.seed = async function(knex) {
     },
     {
       name: 'User',
-      email: 'user@email.com',
+      email: 'user@foodexplorer.com',
       password: await hash(passwordDefault, 8),
       avatar: "",
       is_admin: false,
