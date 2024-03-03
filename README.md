@@ -9,9 +9,11 @@ FrontEnd e BackEnd completo da aplicação <strong>Food Explorer</strong>, que f
 ___
 
 ## 💻 Sobre
-O Food Explorer é uma aplicação web de um restaurante, onde é possivel se cadastrar como usuario na plataforma onde o usuário estará apto a visualizar os pratos e bebidas do restaurante com seus respectivos detalhes, ingredientes e preço. Há ainda uma um campo de busca. Se o usuario for Administrador ele terá a capacidade de criar e editar os pratos da forma que desejar. Todo o projeto é responsivo para a utilização em diversos tipos de dispositivos!
+O Food Explorer representa uma experiência online para restaurantes, proporcionando aos usuários a facilidade de cadastro e acesso a uma variedade de informações sobre pratos e bebidas oferecidos. Ao se cadastrar na plataforma, os usuários têm a oportunidade de explorar o menu, detalhes específicos de cada item, ingredientes e preços. Além disso, a aplicação inclui um prático campo de busca para facilitar ainda mais a navegação.
 
-Este repositório contém os dados do Frontend da minha aplicação em React.js e do BackEnd em Node.js.
+Para os administradores, o Food Explorer oferece recursos avançados, permitindo a criação e edição personalizada dos pratos de acordo com suas preferências. A flexibilidade da plataforma proporciona uma experiência dinâmica e adaptável, garantindo que o usuário desfrute de uma visualização otimizada em diversos dispositivos, graças à responsividade do projeto.
+
+O repositório associado abriga os dados do Frontend, desenvolvido em React.js, e do BackEnd, construído em Node.js.
 
 ___
 
@@ -27,15 +29,30 @@ ___
 
 ## 🛠 Tecnologias
 
-Foram utilizadas as seguintes tecnologias para a criação deste projeto:
+Tecnologias utilizadas para a criação deste projeto:
 
-<abbr title="React"><a href="https://pt-br.react.dev/" target="_blank"><img src="https://skillicons.dev/icons?i=react" /></a></abbr>
-<abbr title="Node.js"><a href="https://nodejs.org/en/" target="_blank"><img src="https://skillicons.dev/icons?i=nodejs" /></a></abbr>
-<abbr title="pnpm"><a href="https://pnpm.io/pt/" target="_blank"><img src="https://skillicons.dev/icons?i=pnpm" /></a></abbr>
-<abbr title="Vite"><a href="https://vitejs.dev/" target="_blank"><img src="https://skillicons.dev/icons?i=vite" /></a></abbr>
-<abbr title="Express"><a href="https://expressjs.com" target="_blank"><img src="https://skillicons.dev/icons?i=express" /></a></abbr>
-<abbr title="SQLite"><a href="https://www.sqlite.org/" target="_blank"><img src="https://skillicons.dev/icons?i=sqlite" /></a></abbr>
-<abbr title="Styled Components"><a href="https://styled-components.com/" target="_blank"><img src="https://skillicons.dev/icons?i=styledcomponents" /></a></abbr>
+<a href="https://pt-br.react.dev/" target="_blank"><img src="https://skillicons.dev/icons?i=react"/></a>
+<a href="https://nodejs.org/en/" target="_blank"><img src="https://skillicons.dev/icons?i=nodejs"/></a>
+<a href="https://pnpm.io/pt/" target="_blank"><img src="https://skillicons.dev/icons?i=pnpm"/></a>
+<a href="https://vitejs.dev/" target="_blank"><img src="https://skillicons.dev/icons?i=vite"/></a>
+<a href="https://expressjs.com" target="_blank"><img src="https://skillicons.dev/icons?i=express"/></a>
+<a href="https://www.sqlite.org/" target="_blank"><img src="https://skillicons.dev/icons?i=sqlite"/></a>
+<a href="https://styled-components.com/" target="_blank"><img src="https://skillicons.dev/icons?i=styledcomponents"/></a>
+
+```bash
+"otherTechnologies": {
+    axios,
+    lucide-react,
+    react-router-dom,
+    swiper,
+    bcryptjs,
+    cors,
+    express-async-errors,
+    jsonwebtoken,
+    knex,
+    multer,
+  }
+```
 
 ___
 
