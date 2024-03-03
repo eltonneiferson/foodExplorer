@@ -29,6 +29,13 @@ ___
 
 Foram utilizadas as seguintes tecnologias para a criação deste projeto:
 
+<div>
+    <h2>SKILLS</h2>
+    <a href="https://reactjs.org" target="_blank">
+    <img src="https://skillicons.dev/icons?i=react" />
+    </a>
+</div>
+
 - [ReactJs](https://reactjs.org) - [Node.js](https://nodejs.org/en/)
 - [pnpm](https://pnpm.io/pt/) - [Knex](https://knexjs.org/)
 - [Vite](https://vitejs.dev/) - [Express](https://expressjs.com)
@@ -65,11 +72,10 @@ $ pnpm i
 # Agora inicie o servidor do FrontEnd
 $ pnpm run dev
 
-# O terminal irá exibir o endereço local onde a aplicação está sendo executada.
+# Será exibido no terminal o endereço local onde a aplicação está sendo executada, acesse este endereço em seu navegador ou segure a tecla CTRL e clique no link.
 
-# Digite o mesmo endereço em seu navegador preferido ou segurar a tecla CTRL e clicar no link.
-# O endereço utilizado na criação do projeto foi:
-  http://localhost:5173/
+#O endereço utilizado na criação do projeto foi:
+$ http://localhost:5173/
 ```
 
 #### 🔑 Para logar na aplicação utilize os usuários:
