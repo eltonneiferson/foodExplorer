@@ -6,14 +6,15 @@ import { Button } from '../Button'
 import { useAuth } from './../../hooks/authContext'
 import { QuantityProductButton } from '../quantityProductButton'
 
-export function ProductCard ({ product, img, price, productId }) {
+export function ProductCard ({ product, img, price, description, productId }) {
     const { user } = useAuth()
     return (
         <Container>
             {user.is_admin === 0 ? <Heart className='icon'/> : <Link to={`/edit-product/${productId}`}><Pencil className='icon'/></Link>}
             <img src={img} alt="" />
             <Link to={`/product/${productId}`}>{product}</Link>
-            <p>{price}</p>
+            <p className='description'>{description}</p>
+            <p className='price'>{price}</p>
             {user.is_admin === 0 && <div className='buttons'>
                 <QuantityProductButton/>
                 <Button>incluir</Button>

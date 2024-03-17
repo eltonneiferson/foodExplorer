@@ -38,7 +38,11 @@ export const Container = styled.div `
         text-align: center;
     }
 
-    p {
+    p.description {
+        display: none;
+    }
+
+    p.price {
         color: ${({ theme }) => theme.COLORS.PRICE};
         font-size: clamp(16px, 3vw, 32px);
     }
@@ -53,6 +57,12 @@ export const Container = styled.div `
 
     @media (min-width: 768px) {
         height: 462px;
+
+        p.description {
+            display: block;
+            font-size: 0.875rem;
+            text-align: center;
+        }
 
         div.buttons {
             flex-direction: row;

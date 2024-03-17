@@ -84,7 +84,6 @@ export function RegisterProduct() {
       const response = await api.post('/products', product)
       const { product_id } = response.data
       alert("Produto cadastrado com sucesso!")
-      console.log(response.data)
       navigate(`/product/${product_id}`)
     } catch (error) {
       alert(error.response.data.message)
@@ -126,7 +125,7 @@ export function RegisterProduct() {
               <option>Selecione uma categoria</option>
               {categories.map((category) => <option key={category.id} value={category.id}>{category.category}</option>)}
             </select>
-            <ChevronDown/>
+              <ChevronDown/>
           </div>
         </div>
         <div className='second-section'>

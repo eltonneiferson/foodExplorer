@@ -49,7 +49,7 @@ export function ProductCarousel () {
                             {categoryProducts.map((product) => {
                                 return (
                                     <SwiperSlide key={product.id}>
-                                        <ProductCard product={product.name + " >"} img={`${api.defaults.baseURL}/files/${product.image}`} price={"R$ " + product.price} productId={product.id}/>
+                                        <ProductCard product={product.name + " >"} img={`${api.defaults.baseURL}/files/${product.image}`} price={"R$ " + product.price} description={product.description} productId={product.id}/>
                                     </SwiperSlide>
                                 )
                             }

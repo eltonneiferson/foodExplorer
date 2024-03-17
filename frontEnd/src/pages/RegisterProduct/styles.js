@@ -42,7 +42,7 @@ export const Content = styled.form `
                 > p {
                     color: ${( { theme } ) => theme.COLORS.LABEL};
                 }
-    
+                
                 > div {
                     background-color: ${( { theme } ) => theme.COLORS.BG_INPUT};
                     padding: 0.8rem;
@@ -50,9 +50,10 @@ export const Content = styled.form `
                     align-items: center;
                     gap: 8px;
                     border-radius: 8px;
-    
+                                        
                     > label {
                         cursor: pointer;
+                        font-size: 0.9rem;
                     }
         
                     > input {
