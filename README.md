@@ -3,8 +3,7 @@
 </p>
 
 <div style="display: flex; align-items: center; justify-content: center;">
-  <img src="https://food-explorer-phi.vercel.app/assets/logo-AgsKAfyZ.svg" alt="Food Explorer Logo" style="margin-right: 20px;">
-  <h1>Food Explorer</h1>
+  <img src="https://food-explorer-phi.vercel.app/assets/logo-AgsKAfyZ.svg"><h1>Food Explorer</h1>
 </div>
 
 FrontEnd e BackEnd completo da aplicação <strong>Food Explorer</strong>, que foi desenvolvida para o desafio final do Explorer da <strong>Rocketseat</strong>.
