@@ -7,7 +7,7 @@ import { Link, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { api } from '../../services/api.js'
 import { useAuth } from '../../hooks/authContext.jsx'
-import { QuantityProductButton } from '../../components/quantityProductButton'
+import { QuantityProductButton } from '../../components/QuantityProductButton'
 
 export function ProductDetails() {
   const [productDetails, setProductDetails] = useState([])
