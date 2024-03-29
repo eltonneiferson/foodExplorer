@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import { Button } from '../Button'
 import { useAuth } from './../../hooks/authContext'
-import { QuantityProductButton } from '../quantityProductButton'
+import { QuantityProductButton } from '../QuantityProductButton'
 
 export function ProductCard ({ product, img, price, description, productId }) {
     const { user } = useAuth()
