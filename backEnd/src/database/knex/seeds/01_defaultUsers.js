@@ -2,7 +2,7 @@ const { hash } = require('bcryptjs')
 
 exports.seed = async function(knex) {
   
-  const passwordDefault = "12345"
+  const passwordDefault = "123456"
  
   await knex('users').insert([
     {

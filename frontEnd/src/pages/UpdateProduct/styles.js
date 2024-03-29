@@ -65,31 +65,34 @@ export const Content = styled.form `
                 display: flex;
                 flex-direction: column;
                 gap: 1rem;
-                position: relative;
                 
-                > select {
-                    background-color: ${( { theme } ) => theme.COLORS.BG_INPUT};
-                    font-family: 'Roboto', sans-serif;
-                    font-family: .9rem;
-                    padding: 1rem;
-                    border: none;
-                    border-radius: 8px;
-                    resize: none;
-                    cursor: pointer;
-                    appearance: none;
-                    -webkit-appearance: none;
-                    -moz-appearance: none;
-                }
-
                 > label {
                     color: ${( { theme } ) => theme.COLORS.LABEL};
                 }
                 
-                > svg {
-                    cursor: pointer;
-                    position: absolute;
-                    bottom: 0.75rem;
-                    right: 1rem;
+                > div {
+                    position: relative;
+
+                    > select {
+                        width: 100%;
+                        background-color: ${( { theme } ) => theme.COLORS.BG_INPUT};
+                        font-family: 'Roboto', sans-serif;
+                        font-family: .9rem;
+                        padding: 1rem;
+                        border: none;
+                        border-radius: 8px;
+                        resize: none;
+                        cursor: pointer;
+                        appearance: none;
+                        -webkit-appearance: none;
+                        -moz-appearance: none;
+                    }
+
+                    > svg {
+                        position: absolute;
+                        bottom: 0.75rem;
+                        right: 1rem;
+                    }
                 }
             }
     }

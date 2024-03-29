@@ -183,11 +183,13 @@ export function UpdateProduct() {
           <Input idInput="product-name" htmlFor="product-name" label="Nome" type="text" placeholder="Ex.:Salada Ceasar" value={productName} onChange={e => setProductName(e.target.value)}/>
           <div className="select">
             <label htmlFor="categories">Categoria</label>
-            <select id="categories" onChange={e => setProductNewCategory(e.target.value)}>
-              <option value={productCategory.category_id}>{productCategory.category}</option>
-              {categories.map(category => <option key={category.id} value={category.id}>{category.category}</option>)}
-            </select>
-            <ChevronDown/>
+            <div>
+              <select id="categories" onChange={e => setProductNewCategory(e.target.value)}>
+                <option value={productCategory.category_id}>{productCategory.category}</option>
+                {categories.map(category => <option key={category.id} value={category.id}>{category.category}</option>)}
+              </select>
+              <ChevronDown/>
+            </div>
           </div>
         </div>
         <div className="second-section">

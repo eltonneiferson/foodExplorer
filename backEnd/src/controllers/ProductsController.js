@@ -67,11 +67,13 @@ class ProductsController {
         const { id } = req.params
 
         const [ product ] = await knex('products').select().where("id", id)
+        const diskStorage = new DiskStorage()
 
         if (!product) {
             throw new AppError("Produto não encontrado!")
         }
-
+        
+        await diskStorage.deleteFile(product.image)
         await knex('products').where("id", id).del()
 
         return res.status(200).json()
