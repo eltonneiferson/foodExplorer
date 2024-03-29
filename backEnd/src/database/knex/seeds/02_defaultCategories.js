@@ -8,7 +8,7 @@ exports.seed = async function(knex) {
       user_id: 1
     },
     {
-      category: 'Pratos principais',
+      category: 'Sobremesas',
       user_id: 1
     },
     {
