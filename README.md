@@ -100,4 +100,4 @@ O BackEnd da aplicação foi hospedado diretamente no [Render](https://render.co
 Obs.: Por estar hospedado em um serviço gratuito, o BackEnd "hiberna" após 15 minutos sem utilização, ou seja, se você está tentando acessar o site e o BackEnd não responde, apenas aguarde, pois ele estará "inicializando" os serviços e esta etapa poderá demorar até 1 minuto, dependendo da carga nos servidores do Render.
 ___
 
-[O resultado FINAL pode ser visto aqui](http://localhost:5173/)
+[O resultado FINAL pode ser visto aqui](https://foodexplorer-rocketseat.vercel.app/)
