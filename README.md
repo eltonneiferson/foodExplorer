@@ -70,6 +70,9 @@ ___
 # Navegue até o diretório do FrontEnd
 $ cd frontEnd
 
+# Instale o PNPM (https://pnpm.io/pt/installation)
+$ npm install -g pnpm
+
 # Instale as dependências necessárias
 $ pnpm i
 
