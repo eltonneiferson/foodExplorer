@@ -15,8 +15,8 @@ export const Container = styled.div `
         display: flex;
         align-items: center;
         gap: 0.875rem;
-        border-radius: 8px;
-        padding-left: 14px;
+        border-radius: 0.5rem;
+        padding-left: 0.875rem;
         
         > input {
             width: 100%;
@@ -30,7 +30,7 @@ export const Container = styled.div `
         > input:-webkit-autofill {
             -webkit-box-shadow: 0 0 0px 1000px ${({ theme }) => theme.COLORS.BG_INPUT} inset;
             -webkit-text-fill-color: ${({ theme }) => theme.COLORS.TEXT};
-            border-radius: 0 8px 8px 0;
+            border-radius: 0 0.5rem 0.5rem 0;
         }
         
         &:focus-within {

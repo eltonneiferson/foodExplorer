@@ -48,8 +48,8 @@ export const Content = styled.form `
                     padding: 0.8rem;
                     display: flex;
                     align-items: center;
-                    gap: 8px;
-                    border-radius: 8px;
+                    gap: 0.5rem;
+                    border-radius: 0.5rem;
                                         
                     > label {
                         cursor: pointer;
@@ -74,7 +74,7 @@ export const Content = styled.form `
                     font-family: .9rem;
                     padding: 1rem;
                     border: none;
-                    border-radius: 8px;
+                    border-radius: 0.5rem;
                     resize: none;
                     cursor: pointer;
                     appearance: none;
@@ -111,7 +111,7 @@ export const Content = styled.form `
                 font-family: 1rem;
                 padding: 0.8rem;
                 border: none;
-                border-radius: 8px;
+                border-radius: 0.5rem;
                 resize: none;
             }
         }
@@ -146,8 +146,8 @@ export const Ingredients = styled.div `
     
     > div {
         background-color: ${( { theme } ) => theme.COLORS.BG_INPUT};
-        padding: 8px;
-        border-radius: 8px;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
         display: flex;
         gap: 1rem;
         flex-wrap: wrap;
@@ -156,7 +156,7 @@ export const Ingredients = styled.div `
             border: none;
             background: ${({ theme }) => theme.COLORS.BG_TAG_INPUT};
             padding: 0.2rem 1rem;
-            border-radius: 8px;
+            border-radius: 0.5rem;
             display: flex;
             align-items: center;
             gap: 5px;
@@ -171,7 +171,7 @@ export const Ingredients = styled.div `
         > span.add {
             background: none;
             border: dashed 1px;
-            border-radius: 8px;
+            border-radius: 0.5rem;
             display: flex;
             align-items: center;
             padding: 0.2rem 1rem;

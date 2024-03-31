@@ -15,7 +15,7 @@ export const Container = styled.h1 `
     }
 
     span {
-        font-size: 12px;
+        font-size: 0.75rem;
         color: ${({ theme }) => theme.COLORS.PRICE};
         font-weight: normal;
     }

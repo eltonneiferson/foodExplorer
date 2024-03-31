@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.header `
     background: ${({ theme }) => theme.COLORS.BG_HEADER};
-    padding: 56px 28px 24px;
+    padding: 3.5rem 1.75rem 1.5rem;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -14,10 +14,10 @@ export const Container = styled.header `
         align-items: center;
 
         h1 {
-            font-size: 22px;
+            font-size: 1.3rem;
 
             img {
-                width: 24px;
+                width: 1.5rem;
             }
         }
 
@@ -30,12 +30,12 @@ export const Container = styled.header `
             
             >p {
                 position: absolute;
-                top: -12px;
+                top: -0.75rem;
                 right: -6px;
                 background-color: ${({ theme }) => theme.COLORS.BG_BUTTON};
                 padding: 3px 7px;
                 font-family: 'Poppins', sans-serif;
-                font-size: 10px;
+                font-size: 0.6rem;
                 border-radius: 100%;
             }
         }
@@ -54,7 +54,7 @@ export const Container = styled.header `
         > p {
             display: flex;
             gap: 6px;
-            padding: 64px 28px 32px;
+            padding: 4rem 1.75rem 2rem;
             background-color: ${({ theme }) => theme.COLORS.BG_HEADER};
             font-size: 1.3rem;
             font-weight: 400;
@@ -62,7 +62,7 @@ export const Container = styled.header `
         }
 
         > div.input {
-            padding: 36px 28px 0;
+            padding: 2.25rem 1.75rem 0;
             display: flex;
             flex-direction: column;
             gap: 2.25rem;
@@ -73,7 +73,7 @@ export const Container = styled.header `
                 
                 > a {
                     font-family: 'Poppins', sans-serif;
-                    padding: 10px;
+                    padding: 0.625rem;
                     font-size: 1.5rem;
                     font-weight: 300;
                     border-bottom: 1px solid ${({ theme }) => theme.COLORS.BG_TAG};
@@ -87,10 +87,10 @@ export const Container = styled.header `
         
         .menu-close {
             justify-content: center;
-            gap: clamp(10px, 3vw, 32px);
+            gap: clamp(10px, 3vw, 2rem);
 
             h1 {
-                font-size: clamp(12px, 2.4vw, 24px);
+                font-size: clamp(0.75rem, 2.4vw, 1.5rem);
 
                 img {
                     width: clamp(15px, 2.3vw, 30px);
@@ -105,7 +105,7 @@ export const Container = styled.header `
             div.requests {
                 display: flex;
                 align-items: center;
-                gap: clamp(10px, 2vw, 32px);
+                gap: clamp(0.625rem, 2vw, 2rem);
             }
             
             svg.menu-icon, div.mobile-requests {

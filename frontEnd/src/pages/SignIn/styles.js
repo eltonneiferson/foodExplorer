@@ -6,7 +6,7 @@ export const Container = styled.section `
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 73px;
+    gap: 4.5625rem;
 
     @media (min-width: 1024px){
         flex-direction: row;
@@ -15,7 +15,7 @@ export const Container = styled.section `
 `
 export const Form = styled.form `
     min-width: 288px;
-    border-radius: 16px;
+    border-radius: 1rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -33,7 +33,7 @@ export const Form = styled.form `
 
     @media (min-width: 1024px){
         width: 412px;
-        padding: 64px;    
+        padding: 4rem;    
         background-color: ${( { theme } ) => theme.COLORS.BG_CARD_LOGIN};
 
         h2 {

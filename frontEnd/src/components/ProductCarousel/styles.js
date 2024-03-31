@@ -6,7 +6,7 @@ export const Carousel = styled.div `
     
     h1 {
         font-family: 'Poppins', sans-serif;
-        font-size: clamp(18px, 3vw, 32px);
+        font-size: clamp(1.1rem, 3vw, 2rem);
         font-weight: 500;
         margin-bottom: 1.5rem;
     }

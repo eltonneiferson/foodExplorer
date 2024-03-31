@@ -48,8 +48,8 @@ export const Content = styled.form `
                 padding: 0.8rem;
                 display: flex;
                 align-items: center;
-                gap: 8px;
-                border-radius: 8px;
+                gap: 0.5rem;
+                border-radius: 0.5rem;
                 
                 > label {
                     cursor: pointer;
@@ -80,7 +80,7 @@ export const Content = styled.form `
                         font-family: .9rem;
                         padding: 1rem;
                         border: none;
-                        border-radius: 8px;
+                        border-radius: 0.5rem;
                         resize: none;
                         cursor: pointer;
                         appearance: none;
@@ -113,7 +113,7 @@ export const Content = styled.form `
             font-family: 1rem;
             padding: 0.8rem;
             border: none;
-            border-radius: 8px;
+            border-radius: 0.5rem;
             resize: none;
         }
     }
@@ -123,7 +123,7 @@ export const Content = styled.form `
             gap: 2rem;
 
             button {
-                padding: 12px;
+                padding: 0.75rem;
             }
 
             button:nth-child(1){
@@ -166,7 +166,7 @@ export const Ingredients = styled.div `
     > div {
         background-color: ${( { theme } ) => theme.COLORS.BG_INPUT};
         padding: 0.8rem;
-        border-radius: 8px;
+        border-radius: 0.5rem;
         display: flex;
         gap: 1rem;
         flex-wrap: wrap;
@@ -175,11 +175,11 @@ export const Ingredients = styled.div `
             cursor: pointer;
             background: ${({ theme }) => theme.COLORS.BG_TAG_INPUT};
             border: none;
-            padding: 6px 16px;
-            border-radius: 8px;
+            padding: 0.375rem 1rem;
+            border-radius: 0.5rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.5rem;
 
             svg {
                 width: 1rem;
@@ -189,10 +189,10 @@ export const Ingredients = styled.div `
         > span.add {
             background: none;
             border: dashed 1px;
-            border-radius: 8px;
+            border-radius: 0.5rem;
             display: flex;
             align-items: center;
-            padding: 6px 16px;
+            padding: 0.375rem 1rem;
             
             > input {
                 width: 120px;

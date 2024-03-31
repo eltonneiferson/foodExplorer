@@ -21,8 +21,8 @@ export const Content = styled.main `
             align-items: center;
 
             >svg {
-                width: 32px;
-                height: 32px;
+                width: 2rem;
+                height: 2rem;
             }
         }
 
@@ -48,13 +48,13 @@ export const Content = styled.main `
                 
                 > h2 {
                     font-family: 'Poppins', sans-serif;
-                    font-size: clamp(27px, 4vw, 40px);
+                    font-size: clamp(1.6875rem, 4vw, 2.5rem);
                     font-weight: 500;
                 }
                 
                 > p {
                     text-align: center;
-                    font-size: clamp(16px, 3vw, 24px);
+                    font-size: clamp(1rem, 3vw, 1.5rem);
                     font-weight: 300;
                 }
                 
