@@ -48,6 +48,7 @@ express-async-errors,
 jsonwebtoken,
 knex,
 multer,
+pm2,
 ```
 
 ___
