@@ -21,17 +21,19 @@ ___
 
  <table>
   <tr>
-    <td align="center"><img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/desktop.png?raw=true" alt="Desktop" style="width: 50%;"></td>
-    <td align="center"><img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/desktop-admin.png?raw=true" alt="Desktop Admin" style="width: 50%;"></td>
+    <td align="center"><img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/desktop.png?raw=true" alt="Desktop""></td>
+    <td align="center"><img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/desktop-admin.png?raw=true" alt="Desktop Admin"></td>
   </tr>
 </table>
  
  - Página inicial mobile:
 
-  <div>
-    <img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/mobile.jpg?raw=true">
-    <img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/mobile-admin.jpg?raw=true">
-  </div>
+  <table>
+    <tr>
+      <td><img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/mobile.jpg?raw=true"></td>
+      <td><img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/mobile-admin.jpg?raw=true"></td>
+    </tr>
+  </table>
 
 ___
 
