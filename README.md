@@ -19,13 +19,17 @@ ___
  
  - Página inicial desktop:
 
- <img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/desktop.png?raw=true">
- <img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/desktop-admin.png?raw=true">
+ <div style="display: flex;">
+   <img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/desktop.png?raw=true" style="width: 50%;">
+   <img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/desktop-admin.png?raw=true" style="width: 50%;">
+ </div>
  
  - Página inicial mobile:
 
-  <img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/mobile.jpg?raw=true">
-  <img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/mobile-admin.jpg?raw=true">
+  <div>
+    <img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/mobile.jpg?raw=true">
+    <img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/mobile-admin.jpg?raw=true">
+  </div>
 
 ___
 
