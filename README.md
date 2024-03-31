@@ -19,10 +19,12 @@ ___
  
  - Página inicial desktop:
 
- <div style="display: flex;">
-   <img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/desktop.png?raw=true" style="width: 50%;">
-   <img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/desktop-admin.png?raw=true" style="width: 50%;">
- </div>
+ <table>
+  <tr>
+    <td align="center"><img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/desktop.png?raw=true" alt="Desktop" style="width: 50%;"></td>
+    <td align="center"><img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/desktop-admin.png?raw=true" alt="Desktop Admin" style="width: 50%;"></td>
+  </tr>
+</table>
  
  - Página inicial mobile:
 
