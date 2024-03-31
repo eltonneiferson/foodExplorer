@@ -45,7 +45,7 @@ export function ProductCarousel () {
                 return (
                     <Carousel key={category.id}>
                         <h1>{category.category}</h1>
-                        <Swiper modules={[ Navigation ]} slidesPerView={2} spaceBetween={35} navigation={true} grabCursor={true} breakpoints={{ 640: {slidesPerView: 2, spaceBetween: 0}, 768: { slidesPerView: 3, spaceBetween: 120}, 1100: { slidesPerView: 4, spaceBetween: 180 }}} loop>
+                        {<Swiper modules={[ Navigation ]} slidesPerView={2} spaceBetween={35} navigation={true} grabCursor={true} breakpoints={{ 640: {slidesPerView: 2, spaceBetween: 0}, 768: { slidesPerView: 3, spaceBetween: 120}, 1100: { slidesPerView: 4, spaceBetween: 180 }}} loop>
                             {categoryProducts.map((product) => {
                                 return (
                                     <SwiperSlide key={product.id}>
@@ -54,7 +54,7 @@ export function ProductCarousel () {
                                 )
                             }
                             )}
-                        </Swiper>
+                        </Swiper>}
                     </Carousel>
                 )
             })}
