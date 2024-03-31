@@ -16,13 +16,17 @@ O repositório associado abriga os dados do Frontend, desenvolvido em React.js, 
 ___
 
 ## 🎨 Layout
+ 
  - Página inicial desktop:
 
-Imagem
+ <img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/desktop.png?raw=true">
+ <img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/desktop-admin.png?raw=true">
  
  - Página inicial mobile:
 
-Imagem
+  <img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/mobile.jpg?raw=true">
+  <img src="https://github.com/eltonneiferson/foodExplorer/blob/main/project-images/mobile-admin.jpg?raw=true">
+
 ___
 
 ## 🛠 Tecnologias
