@@ -103,11 +103,11 @@ $ http://localhost:5173/
 ```bash
 # Usuário Administrator
   e-mail: admin@foodexplorer.com
-  senha: 12345
+  senha: 123456
 
 # Usuário comum
   e-mail: user@foodexplorer.com
-  senha: 12345
+  senha: 123456
 ```
 ___
 
